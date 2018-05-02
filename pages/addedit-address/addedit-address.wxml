@@ -1,0 +1,26 @@
+<view class='edit-address'>
+  <view class='form-wrapper'>
+    <view class='item'>
+      <view class='title'><text>收货人姓名</text></view>
+      <view class='input'><input data-name='receiver' bindinput='bindKeyInput' placeholder='请输入姓名' value='{{receiver}}'/></view>
+    </view>
+    <view class='item'>
+      <view class='title'><text>手机号</text></view>
+      <view class='input'><input bindinput='bindKeyInput' data-name='mobile' placeholder='请输入手机号' value='{{mobile}}'/></view>
+    </view>
+    <view class='item right-icon'>
+      <picker class="picker" mode="region" bindchange="bindRegionChange" value="{{region}}">
+        <view>{{region.length ? region[0]+ ' ' + region[1] + ' ' + region[2] : '省份、市、区'}}</view>
+      </picker>
+    </view>
+    <view class='item'>
+      <view class='title'><text>详细地址</text></view>
+      <view class='input'><textarea bindinput='bindKeyInput' data-name='address' value='{{address}}' auto-height placeholder='请输入详细地址' /></view>
+    </view>
+    <view class='item mt20'>
+      <view class='dtitle'><text>设为默认地址</text></view>
+      <view class='chose {{isDefault==1?"act":""}}' bindtap='choseAddr'></view>
+    </view>
+  </view>
+  <view class='footer' bindtap='saveAddr'>保存</view>
+</view>

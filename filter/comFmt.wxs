@@ -1,0 +1,42 @@
+// 是否为空
+function isUnDefined(value) {
+  if (value === undefined || value === null || value === '') {
+    return true;
+  }
+  return false;
+}
+
+function formatPrice(amount, len) {
+  len = isUnDefined(len) ? 2 : len;
+  if (isUnDefined(amount)) {
+    return '--';
+  }
+  amount = (+amount / 1000).toString();
+  var reg = getRegExp('(\\.\\d{' + len + 1 + '})\\d*', 'ig');
+  amount = +amount.replace(reg, '$1');
+  return amount.toFixed(len);
+}
+
+// 格式化图片地址
+function formatImg(imgs, suffix) {
+  if (!imgs) {
+    return '';
+  }
+  var img = imgs.split('||')[0];
+  suffix = suffix || '?imageMogr2/auto-orient';
+  var reg = getRegExp('^http|^data:image', 'i');
+  if (!reg.test(img)) {
+    var index = img.indexOf('?imageMogr2');
+    if (index !== -1) {
+      suffix = img.substr(index);
+      img = img.substr(0, index);
+    }
+    img = 'http://otoieuivb.bkt.clouddn.com/' + encodeURIComponent(img) + suffix;
+  }
+  return img;
+}
+
+module.exports = {
+  formatPrice: formatPrice,
+  formatImg: formatImg
+}

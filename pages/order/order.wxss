@@ -1,0 +1,131 @@
+.orders-wrapper .top-scroll {
+  display: flex;
+  height: 90rpx;
+  line-height: 90rpx;
+  white-space: nowrap;
+  background: #fff;
+}
+.orders-wrapper .top-scroll .item {
+  display: inline-block;
+  padding: 0 50rpx;
+  text-align: center;
+  font-size: 30rpx;
+  color: rgb(51, 51, 51);
+}
+.orders-wrapper .top-scroll .item:first-child {
+  padding-left: 24rpx;
+}
+.orders-wrapper .top-scroll .item:last-child {
+  padding-right: 24rpx;
+}
+.orders-wrapper .top-scroll .item .txt {
+  position: relative;
+  display: block;
+}
+.orders-wrapper .top-scroll .item.act .txt {
+  color: rgb(114, 165, 44);
+}
+.orders-wrapper .top-scroll .item.act .border {
+  display: inline-block;
+  position: absolute;
+  bottom: 6rpx;
+  left: 0;
+  width: 100%;
+  height: 6rpx;
+  background: rgb(114, 165, 44);
+}
+.orders-wrapper .scroll-content .item {
+  margin-top: 24rpx;
+  background: #fff;
+}
+.orders-wrapper .scroll-content .item .top {
+  padding: 0 24rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border-bottom: 1rpx solid rgb(238, 238, 238);
+  font-size: 22rpx;
+  color: rgb(102, 102, 102);
+}
+.orders-wrapper .scroll-content .item .status {
+  float: right;
+  font-size: 24rpx;
+  color: rgb(114, 165, 44);
+}
+.orders-wrapper .scroll-content .item .item-cont {
+  display: flex;
+  padding: 22rpx 24rpx;
+  border-bottom: 1rpx solid rgb(238, 238, 238);
+}
+.orders-wrapper .scroll-content .item .item-cont .img-cont {
+  flex: 0 0 180rpx;
+  width: 180rpx;
+  height: 180rpx;
+}
+.orders-wrapper .scroll-content .item .item-cont .img-cont .img {
+  width: 100%;
+  height: 100%;
+}
+.orders-wrapper .scroll-content .item .item-cont .info {
+  flex: 1;
+  display: flex;
+  font-size: 0;
+  padding-left: 20rpx;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.orders-wrapper .scroll-content .item .item-cont .info .title {
+  display: flex;
+  padding-top: 10rpx;
+}
+.orders-wrapper .scroll-content .item .item-cont .info .title .left {
+  flex: 1;
+  font-size: 26rpx;
+  color: rgb(51, 51, 51);
+}
+.orders-wrapper .scroll-content .item .item-cont .info .title .unit-price {
+  flex: 0 0 100rpx;
+  text-align: right;
+  font-size: 26rpx;
+}
+.orders-wrapper .scroll-content .item .item-cont .info .spec {
+  font-size: 24rpx;
+  color: rgb(153, 153, 153);
+}
+.orders-wrapper .scroll-content .item .item-cont .info .bottom {
+  font-size: 24rpx;
+  color: rgb(153, 153, 153);
+}
+.orders-wrapper .scroll-content .item .item-cont .info .bottom .date {
+  display: inline;
+}
+.orders-wrapper .scroll-content .item .item-cont .info .bottom .p-info {
+  float: right;
+  font-size: 28rpx;
+  color: rgb(51, 51, 51);
+}
+.orders-wrapper .scroll-content .item .item-cont .info .bottom .p-info .price {
+  color: rgb(252, 68, 24);
+}
+.orders-wrapper .scroll-content .item .btns {
+  padding: 0 24rpx;
+  height: 100rpx;
+}
+.orders-wrapper .scroll-content .item .btns .btn {
+  float: right;
+  width: 144rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  margin-left: 20rpx;
+  margin-top: 20rpx;
+  border-radius: 6rpx;
+  text-align: center;
+  font-size: 28rpx;
+}
+.orders-wrapper .scroll-content .item .btns .btn.pay {
+  color: rgb(114, 165, 44);
+  border: 1rpx solid rgb(114, 165, 44);
+}
+.orders-wrapper .scroll-content .item .btns .btn.cancel {
+  color: rgb(204, 204, 204);
+  border: 1rpx solid rgb(204, 204, 204);
+}

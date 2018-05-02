@@ -1,0 +1,54 @@
+<view class='orders-wrapper'>
+  <scroll-view class='top-scroll' scroll-x scroll-with-animation scroll-into-view='{{viewId[topIdx]}}'>
+    <view id='all' data-index='0' catchtap='goView' class='item {{topIdx==0?"act":""}}'>
+      <view class='txt'>全部<view class='border'></view></view>
+    </view>
+    <view id='dzf' data-index='1' catchtap='goView' class='item {{topIdx==1?"act":""}}'>
+      <view class='txt'>待支付<view class='border'></view></view>
+    </view>
+    <view id='dsh' data-index='2' catchtap='goView' class='item {{topIdx==2?"act":""}}'>
+      <view class='txt'>待审核<view class='border'></view></view>
+    </view>
+    <view id='dfh' data-index='3' catchtap='goView' class='item {{topIdx==3?"act":""}}'>
+      <view class='txt'>待发货<view class='border'></view></view>
+    </view>
+    <view id='dsf' data-index='4' catchtap='goView' class='item {{topIdx==4?"act":""}}'>
+      <view class='txt'>待收货<view class='border'></view></view>
+    </view>
+    <view id='ysf' data-index='5' catchtap='goView' class='item {{topIdx==5?"act":""}}'>
+      <view class='txt'>已收货<view class='border'></view></view>
+    </view>
+    <view id='sqqx' data-index='6' catchtap='goView' class='item {{topIdx==6?"act":""}}'>
+      <view class='txt'>申请取消<view class='border'></view></view>
+    </view> 
+    <view id='yqx' data-index='7' catchtap='goView' class='item {{topIdx==7?"act":""}}'>
+      <view class='txt'>已取消<view class='border'></view></view>
+    </view>
+  </scroll-view>
+  <scroll-view class='scroll-content' scroll-y style="height: {{scrollHeight}}px;" bindscrolltolower="getOrders" enable-back-to-top>
+      <view class='item' bindtap='goDetail'>
+        <view class='top'>订单号：3332232332<text class='status'>待支付</text></view>
+        <view class='item-cont'>
+          <view class='img-cont'><image class='img' src=''/></view>
+          <view class='info'>
+            <view class='title'>
+              <view class='left'>铺设到了福利似懂非懂是放松的方式离开就离开减肥法</view>
+              <view class='unit-price'>
+                <view>¥19.00</view>
+                <view>X2</view>
+              </view>
+            </view>
+            <view class='spec'>行哦 is 地方</view>
+            <view class='bottom'>
+              <view class='date'>2017-11-23</view>
+              <view class='p-info'>总价：<text class='price'>¥300.00</text></view>
+            </view>
+          </view>
+        </view>
+        <view class='btns'>
+          <view class='btn pay'>去付款</view>
+          <view class='btn cancel'>取消订单</view>
+        </view>
+      </view>
+    </scroll-view>
+</view>

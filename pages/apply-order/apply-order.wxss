@@ -1,0 +1,184 @@
+.bgf {
+  background: #fff;
+}
+.fr {
+  float: right;
+}
+.apply-order .addr-wrapper {
+  height: 178rpx;
+  background-color: #fff;
+  background-position: bottom left;
+  background-repeat: repeat-x;
+  background-size: auto 8rpx;
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAukAAAAECAMAAAAEX1FMAAAASFBMVEUAAAC6mbv1cXH1cXH1cXH1cXH1cXGAvPn1cXGAvPmAvPn1cXGAvPmAvPn1cXGAvPmAvPn1cXGAvPmAvPn1cXGAvPn1cXGAvPmi/sW9AAAAFnRSTlMACua6fj8X9fXl1tW6oaF8Xl49KioWFHoTjgAAAF5JREFUSMftjMcRgDAQA21yzuD+O8Vw+thXwc1IT2lX7slSOckRdGZse+To0bPlZUUJ+O710eBlu7oI0qNny0uLosHTpI/aUyY/fiQ9era8tKlxtAadDdvyk/TomfJe2PW6CV8dI80AAAAASUVORK5CYII=');
+}
+.apply-order .addr-wrapper .addr-list {
+  display: flex;
+  flex-direction: row;
+  padding: 36rpx 0;
+  background-color: #fff;
+}
+.apply-order .addr-wrapper .addr-icon {
+  flex: 0 0 80rpx;
+  display: flex;
+  align-items: center;
+}
+.apply-order .addr-wrapper .addr-icon .img {
+  width: 24rpx;
+  height: 30rpx;
+  margin-left: 24rpx;
+}
+.apply-order .addr-wrapper .addr-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  color: rgb(51, 51, 51);
+}
+.apply-order .addr-wrapper .addr-content .receiver {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+.apply-order .addr-wrapper .addr-content .address {
+  margin-top: 24rpx;
+  line-height: 1.2;
+  font-size: 24rpx;
+}
+.apply-order .addr-wrapper .addr-right {
+  flex: 0 0 104rpx;
+  display: flex;
+  align-items: center;
+}
+.apply-order .addr-wrapper .addr-right .img {
+  width: 16rpx;
+  height: 28rpx;
+  margin-left: 60rpx;
+}
+.apply-order .addr-no-content {
+  padding: 18rpx 0;
+  text-align: center;
+  width: 100%;
+  font-size: 0;
+}
+.apply-order .addr-no-content .no-addr {
+  width: 70rpx;
+  height: 70rpx;
+  margin-bottom: 18rpx;
+}
+.apply-order .addr-no-content .bottom {
+  font-size: 26rpx;
+  color: #333;
+}
+.apply-order .addr-no-content .bottom .btn {
+  display: inline-block;
+  width: 116rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  margin-left: 20rpx;
+  border: 2rpx dotted #72a52c;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  color: #72a52c;
+}
+.apply-order .products {
+  margin-top: 20rpx;
+  padding-left: 24rpx;
+  background-color: #fff;
+}
+.apply-order .products .p-item {
+  padding: 22rpx 24rpx 22rpx 0;
+  border-bottom: 1rpx solid #ccc;
+  display: flex;
+}
+.apply-order .products .p-item:last-child {
+  border-bottom: none;
+}
+.apply-order .products .p-item .l-img {
+  width: 180rpx;
+  height: 180rpx;
+  flex: 0 0 180rpx;
+}
+.apply-order .products .p-item .l-img .img {
+  width: 100%;
+  height: 100%;
+}
+.apply-order .products .p-item .item-cont {
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+.apply-order .products .p-item .title {
+  font-size: 26rpx;
+  color: rgb(51, 51, 51);
+}
+.apply-order .products .p-item .tip {
+  padding-top: 20rpx;
+  font-size: 24rpx;
+  color: rgb(153, 153, 153);
+}
+.apply-order .products .p-item .btm {
+  font-size: 0;
+}
+.apply-order .products .p-item .unit {
+  font-size: 24rpx;
+  color: rgb(252, 68, 24);
+}
+.apply-order .products .p-item .price {
+  font-size: 30rpx;
+  color: rgb(252, 68, 24);
+}
+.apply-order .products .p-item .count {
+  float: right;
+  font-size: 28rpx;
+  color: rgb(51, 51, 51);
+}
+.apply-order .note {
+  height: 90rpx;
+  margin-top: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  font-size: 28rpx;
+  color: rgb(51, 51, 51);
+  background-color: #fff;
+}
+.apply-order .note .title {
+  flex: 0 0 112rpx;
+}
+.apply-order .note .input-wrap {
+  flex: 1;
+  margin-left: 10rpx;
+  padding-top: 6rpx;
+}
+.apply-order .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  display: flex;
+  background: #fff;
+  height: 90rpx;
+  line-height: 90rpx;
+}
+.apply-order .footer .ftxt {
+  flex: 1;
+  padding-right: 30rpx;
+}
+.apply-order .footer .ftxt .ftip {
+  font-size: 26rpx;
+  color: rgb(51, 51, 51);
+}
+.apply-order .footer .ftxt .fprice {
+  font-size: 30rpx;
+  color: rgb(252, 68, 24);
+}
+.apply-order .footer .fbtn {
+  height: 90rpx;
+  line-height: 90rpx;
+  flex: 0 0 210rpx;
+  background-color: #72a52c;
+  color: #fff;
+  text-align: center;
+  font-size: 32rpx;
+}

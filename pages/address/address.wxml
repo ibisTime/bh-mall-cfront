@@ -1,0 +1,26 @@
+<view class='address-wrapper'>
+  <scroll-view scroll-y="true" style="height:{{scrollHeight}}px;">
+    <view class='addr-list'>
+      <view wx:for='{{addrList}}' wx:key='{{item.code}}' data-idx='{{index}}' bindtap='choseItem' class='item'>
+        <view class='addr-cont'>
+          <view class='addr-info'>
+            <view class='info'>
+              <text class='name'>{{item.receiver}}</text><text>{{item.mobile}}</text>
+            </view>
+            <view class='addr'>{{item.province}} {{item.city}} {{item.area}} {{item.address}}</view>
+          </view>
+          <view class='chose {{choseAddr.code==item.code?"act":""}}'></view>
+        </view>
+        <view class='addr-operator clearfix'>
+          <view class='default {{item.isDefault==1?"act":""}}'>默认</view>
+          <view class='delete' data-code="{{item.code}}" catchtap='deleteItem'><image class='img' src='../../images/img/delete@2x.png'/>删除</view>
+          <view class='edit' data-code="{{item.code}}" catchtap='editItem'><image class='img' src='../../images/img/edit@2x.png'/>编辑</view>
+        </view>
+      </view>
+    </view>
+    <view style='height: 90rpx;'></view>
+    <view class='footer'>
+      <navigator url='../addedit-address/addedit-address'>添加</navigator>
+    </view>
+  </scroll-view>
+</view>

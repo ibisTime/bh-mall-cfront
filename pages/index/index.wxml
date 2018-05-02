@@ -1,0 +1,29 @@
+<import src="../loading/loading.wxml"/>
+<view class="top">
+  <image class="search" src="../../images/img/sousuo@2x.png"></image>
+  <input class="proName" type="text" placeholder="请输入您感兴趣的商品"></input>
+</view>
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{imgUrls}}" wx:key="{{index}}">
+    <swiper-item>
+      <image src="{{item}}" class="slide-image" mode='scaleToFill' />
+    </swiper-item>
+  </block>
+</swiper>
+<wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
+<view>
+  <navigator wx:for="{{list}}" wx:key="{{index}}" url='/pages/goodsdetail/goodsdetail?code={{item.code}}'>
+    <view class="indexShow">
+      <image src="{{comFmt.formatImg(item.pic)}}"></image>
+      <view class="showDetail">
+        <text class="showTitle">{{item.name}}</text>
+        <text class="showServe">{{item.slogan}}</text>
+        <view class="showPrice">
+          <text class="price"><text class="unit">¥</text>{{comFmt.formatPrice(item.adPrice)}}</text>
+          <text class="showOldPrice">市场参考价：{{comFmt.formatPrice(item.price)}}</text>
+        </view>
+      </view>
+    </view>
+  </navigator>
+  <view wx:if="{{hasMore}}"><template is="loading"/></view>
+</view>

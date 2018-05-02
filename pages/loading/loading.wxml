@@ -1,0 +1,6 @@
+<template name="loading">
+  <view style="height: 80rpx;line-height: 80rpx;text-align: center;font-size: 28rpx;">
+    <image style='width:28rpx;height:28rpx;' src='../../images/img/loading.gif'/>
+    <text style='padding-left: 20rpx;'>加载中...</text>
+  </view>
+</template>

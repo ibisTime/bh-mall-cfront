@@ -1,0 +1,36 @@
+<!--pages/myself/myself.wxml-->
+<view class="myself">
+  <view class="top">
+    <view class="user">
+      <view class="head-pic">
+        <image src="../../images/img/timg.jpg"></image>
+      </view>
+      <view class="user-info">
+        <text class="name">张三</text>
+        <text class="tel">18888888888</text>
+      </view>
+    </view>
+  </view>
+  <navigator url='/pages/setting/setting'>
+    <view class="item" bindgetuserinfo="getUserInfo">
+      <image class="ico" src="../../images/img/anquanzhongxin@2x.png"></image>
+      <text class="text">安全中心</text>
+      <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
+    </view>
+  </navigator>
+  <view class="item">
+    <image class="ico" src="../../images/img/changjianwenti@2x.png"></image>
+    <text class="text">常见问题</text>
+    <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
+  </view>
+  <view class="item">
+    <image class="ico" src="../../images/img/lianxidaili@2x.png"></image>
+    <text class="text">联系代理</text>
+    <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
+  </view>
+  <view class="item">
+      <image class="ico" src="../../images/img/banbenhao@2x.png"></image>
+      <text class="text">版本号</text>
+      <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
+    </view>
+</view>

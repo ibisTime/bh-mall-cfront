@@ -1,0 +1,277 @@
+swiper{
+    height: 750rpx;
+}
+swiper image{
+    width: 100%;
+    height: 100%;       
+}
+
+.goodsdetail{
+    position: fixed;
+    top: 0;
+    bottom: 100rpx;
+    width: 100%;
+    overflow: auto;
+    background-color: #f7f7f7;
+}
+
+/* 商品介绍 */
+.center{
+    padding: 28rpx 24rpx;
+    background-color: #fff;
+}
+.center .title{
+    display: block;
+    font-size: 32rpx;
+    color: rgb(51, 51, 51);
+    line-height: 40rpx;
+}
+.center .tip{
+    margin-top: 10rpx;
+    font-size: 24rpx;
+    color: rgb(102, 102, 102);
+}
+.center .price{
+    margin-top: 25rpx;
+    font-size: 24rpx;
+    color: rgb(153, 153, 153);
+    overflow: hidden;
+}
+.center .price .newPrice{
+    display: inline-block;
+    color: rgb(252,68,24);
+}
+.center .price .newPrice>text{
+    font-size: 36rpx;
+}
+.center .price .oldPrice{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 160rpx;
+}
+
+/* 商品详情 */
+.detail{
+    padding: 0 24rpx;
+    margin-top: 20rpx;
+    background-color: #fff;
+}
+.detail .title{
+    padding: 28rpx 0;
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+.detail .title .text{
+    padding-left: 19rpx;
+    border-left: 6rpx solid #72a52c;
+    font-size: 28rpx;
+    color: rgb(51, 51, 51);
+    display: block;
+}
+.detail .detailImg{
+    margin-top: 20rpx;
+    width: 100%;
+}
+
+/* 底部 */
+.footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    overflow: hidden;
+    background-color: #fff;
+}
+.footer>view{
+    float: left;
+    height: 100rpx;
+}
+.footer .link{
+    width: 290rpx;
+    overflow: hidden;
+}
+.footer .link>view{
+    float: left;
+    width: 50%;
+    text-align: center;
+}
+.footer .link .img{
+    width: 33rpx;
+    margin-top: 18rpx;
+}
+.footer .link .img{
+    width: 40rpx;
+    height: 40rpx;
+    margin-top: 18rpx;
+}
+.footer .link .text{
+    display: block;
+    font-size: 20rpx;
+}
+.footer .link .car{
+    border-left: 1px solid #eee;
+}
+.footer .shopCar,.buy{
+    width: 230rpx;
+    line-height: 100rpx;
+    text-align: center;
+    color: #fff;
+    background-color: rgb(255, 122, 0);
+}
+.footer .shopCar{
+    background-color: rgb(255, 168, 0);
+}
+
+/* 遮罩层 */
+.mask {
+width: 100%;
+height: 100%;
+background-color: rgba(0, 0, 0, 0.7);
+position: fixed;
+top: 0;
+left: 0;
+/* display: none; */
+}
+.show{
+    display: block !important;
+}
+
+/* 弹出购买商品页面 */
+.buypart{
+    width: 100%;
+    height: 800rpx;
+    position: fixed;
+    bottom: 0;
+    background-color: #fff;
+    /* display: none; */
+    z-index: 9;
+}
+.buypart .title{
+    height: 210rpx;
+    position: relative;
+    border-bottom: 1px solid #eee;
+    margin: 0 30rpx;
+}
+.buypart .title .title-pic{
+    width: 226rpx;
+    height: 226rpx;
+    position: absolute;
+    left: 0;
+    bottom: 28rpx;
+    padding: 3rpx;
+    border-radius: 10rpx;
+    background-color: #fff;
+}
+.buypart .title .title-pic image{
+    width: 220rpx;
+    height: 220rpx;
+}
+.buypart .title .title-right{
+    margin-left: 246rpx;
+    position: relative;
+    overflow: hidden;
+}
+.buypart .title .title-right .p{
+    margin-top: 20rpx;
+    font-size: 28rpx;
+    color: #333;
+}
+.buypart .title .title-right .span{
+    margin-top: 40rpx;
+    font-size: 28rpx;
+    color: #999;
+}
+.buypart .title .title-right .close {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80rpx;
+    height: 80rpx;
+    padding-top: 20rpx;
+    text-align: right;
+}
+.buypart .packaging{
+    height: 380rpx;
+    border-bottom: 1px solid #eee;
+    overflow: hidden;
+    margin: 0 30rpx;
+}
+.buypart .packaging .p{
+    margin-top: 30rpx;
+    margin-bottom: 40rpx;
+    font-size: 32rpx;
+    color: #333;
+}
+.buypart .packaging .select{
+    overflow: hidden;
+}
+.buypart .packaging .select .span{
+    float: left;
+    width: 118rpx;
+    line-height: 64rpx;
+    border: 1px solid #ccc;
+    text-align: center;
+    font-size: 26rpx;
+    border-radius: 10rpx;
+}
+.buypart .packaging .select .span.active{
+    background-color: #72a52c;
+    color: #fff;
+}
+.buypart .packaging .select .span+.span{
+    margin-left: 20rpx;
+}
+.buypart .total-money{
+    height: 120rpx;
+    border-bottom: 1px solid #eee;
+    margin: 0 30rpx;
+}
+.buypart .total-money>view{
+    width: 50%;
+    height: 100%;
+    float: left;
+    overflow: hidden;
+}
+.buypart .total-money .left text{
+    float: left;
+    margin-top: 40rpx;
+}
+.buypart .total-money .left .text{
+    font-size: 28rpx;
+}
+.buypart .total-money .left .symbol{
+    font-size: 24rpx;
+    color: #72a52c;
+}
+.buypart .total-money .left .sum{
+    font-size: 32rpx;
+    color: #72a52c;
+}
+.buypart .total-money .right text{
+    margin-top: 40rpx;
+    float: right;
+    text-align: center;
+    line-height: 50rpx;
+}
+.buypart .total-money .right .diamonds{
+    width: 50rpx;
+    height: 50rpx;
+    background-color: #f5f5f5;
+    font-size: 34rpx;
+    color: #888;
+}
+.buypart .total-money .right .num{
+    float: right;
+    margin-top: 40rpx;
+    width: 90rpx;
+    text-align: center;
+    font-size: 30rpx;
+    color: #333;
+}
+.buypart .buypart-bottom{
+    height: 90rpx;
+    line-height: 90rpx;
+    background-color: #72a52c;
+    color: #fff;
+    text-align: center;
+    font-size: 32rpx;
+}

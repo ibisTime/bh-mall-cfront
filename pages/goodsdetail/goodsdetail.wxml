@@ -1,0 +1,87 @@
+<view>
+  <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
+  <view class="goodsdetail">
+    <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+        <block wx:for="{{advPic}}" wx:key="{{index}}">
+            <swiper-item>
+                <image src="{{item}}" class="slide-image" mode='scaleToFill' />
+            </swiper-item>
+        </block>
+    </swiper>
+    <view class="center">
+        <text class="title">{{detail.name}}</text>
+        <text class="tip">{{detail.slogan}}</text>
+        <view class="price">
+            <view class="newPrice">￥<text>{{comFmt.formatPrice(detail.adPrice)}}</text></view>
+            <text class="oldPrice">市场参考价：￥{{comFmt.formatPrice(detail.price)}}</text>
+        </view>
+    </view>
+    <view class="detail">
+        <text class="title">
+            <text class="text">商品详情</text>
+        </text>
+        <rich-text nodes="{{info}}"></rich-text>
+    </view>
+  </view>
+  <view class="footer">
+      <view class="link">
+          <view class="service" bindtap="callPhone">
+              <image class="img" src="../../images/img/kefu@2x.png"></image>
+              <text class="text">客服</text>
+          </view>
+          <view class="car">
+              <image class="img" src="../../images/img/gouwuche@2x.png"></image>
+              <text class="text">购物车</text>
+          </view>
+      </view>
+      <view class="shopCar">加入购物车</view>
+      <view class="buy" bindtap='showMask'>立即购买</view>
+  </view>
+  <block wx:if="{{showMask}}">
+    <view class="mask" bindtap='hideMask'></view>
+    <view class="buypart">
+        <view class="title">
+            <view class="title-pic">
+                <image src="{{comFmt.formatImg(detail.pic)}}"></image>
+            </view>
+            <view class="title-right">
+                <view class="p">{{detail.name}}</view>
+                <text class="span">规格包含数量：{{current.number}}</text>
+                <view class="close" bindtap='hideMask'><icon type="cancel" size="18"></icon></view>
+            </view>
+        </view>
+        <view class="packaging" style='border-bottom: none;'>
+            <view class="p">规格</view>
+            <view class="select">
+              <text 
+                wx:for="{{specsList}}"
+                wx:key="{{index}}"
+                data-idx="{{index}}"
+                bindtap="chooseItem"
+                class="span {{item.code == current.code ? 'active' : ''}}"
+                >{{item.name}}</text>
+            </view>
+        </view>
+        <view class="total-money">
+            <view class="left">
+                <text class="text">合计：</text>
+                <text class="symbol">￥</text>
+                <text class="sum">{{comFmt.formatPrice(price)}}</text>
+            </view>
+            <view class="right">
+                <text class="diamonds" bindtap="add">+</text>
+                <input 
+                  class="num" 
+                  bindconfirm="inputChange" 
+                  bindblur="inputChange"
+                  value="{{count}}" 
+                  type="number"/>
+                <text class="diamonds" bindtap='decrease'>-</text>
+            </view>
+        </view>
+        <view class="buypart-bottom" bindtap='buy'>
+            确认购买
+        </view>
+    </view>
+  </block>
+</view>
