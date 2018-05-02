@@ -7,32 +7,31 @@ export default function ajax(options){
     code: options.code,
     json: JSON.stringify(options.json)
   };
-  wx.request({
-    url: 'https://xcx.bhxt.hichengdai.com/api',
-    data: params,
-    header: {
-      'content-type': 'application/x-www-form-urlencoded'
-    },
-    method: options.method || 'POST',
-    success: function(res){
-      if (res.data.errorCode == 0) {
-        options.success && options.success(res.data.data);
-      } else {
+  return new Promise((resolve, reject) => {
+    wx.request({
+      url: 'https://xcx.bhxt.hichengdai.com/api',
+      data: params,
+      header: {
+        'content-type': 'application/x-www-form-urlencoded'
+      },
+      method: options.method || 'POST',
+      success: function (res) {
+        if (res.data.errorCode == 0) {
+          resolve(res.data.data);
+        } else {
+          wx.showToast({
+            title: res.data.errorInfo,
+            icon: 'none'
+          });
+          reject(res.data.errorInfo);
+        }
+      },
+      fail: function (error) {
         wx.showToast({
-          title: res.data.errorInfo,
-          icon: 'none'
+          title: res.data.errorInfo
         });
-        options.fail && options.fail(res.data.errorInfo);
-      } 
-    },
-    fail: function(error) {
-      wx.showToast({
-        title: res.data.errorInfo
-      });
-      options.fail && options.fail(error);
-    },
-    complete: function(res) {
-      options.complete && options.complete(res);
-    }
+        reject(error);
+      }
+    });
   });
 }

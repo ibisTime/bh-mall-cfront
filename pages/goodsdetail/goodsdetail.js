@@ -25,7 +25,7 @@ Page({
       wx.showLoading({
         title: '加载中...'
       });
-      getProduct(code, (data) => {
+      getProduct(code).then((data) => {
         wx.hideLoading();
         let advPic = data.advPic.split('||').map(p => formatImg(p));
         this.setData({
@@ -36,7 +36,7 @@ Page({
           specsList: data.specsList.filter(v => v.isNormalOrder === '1'),
           price: data.price
         });
-      }, () => {
+      }).catch(() => {
         wx.hideLoading();
       });
     },

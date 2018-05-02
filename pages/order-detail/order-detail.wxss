@@ -1,0 +1,221 @@
+.bgf {
+  background: #fff;
+}
+.fr {
+  float: right;
+}
+.mt10 {
+  margin-top: 10rpx;
+}
+.order-detail .addr-wrapper {
+  height: 178rpx;
+  background-color: #fff;
+  border-bottom: 1rpx solid #eee;
+}
+.order-detail .addr-wrapper.car-wrapper {
+  height: 140rpx;
+}
+.order-detail .top-info.addr-wrapper {
+  background-color: #73A62E;
+  height: 140rpx;
+}
+.bgf .addr-wrapper:last-child {
+  border-bottom: none;
+}
+.order-detail .addr-wrapper .addr-list {
+  display: flex;
+  align-items: center;
+  height: 100%;
+}
+.order-detail .addr-wrapper .addr-icon,
+.order-detail .addr-wrapper .car-icon,
+.order-detail .addr-wrapper .wait-icon {
+  flex: 0 0 80rpx;
+  display: flex;
+  align-items: center;
+}
+.order-detail .addr-wrapper .addr-icon .img {
+  width: 24rpx;
+  height: 30rpx;
+  margin-left: 24rpx;
+}
+.order-detail .addr-wrapper .car-icon .img {
+  width: 32rpx;
+  height: 29rpx;
+  margin-left: 24rpx;
+}
+.order-detail .addr-wrapper .wait-icon .img {
+  width: 32rpx;
+  height: 32rpx;
+  margin-left: 24rpx;
+}
+.order-detail .addr-wrapper .addr-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding-right:24rpx;
+  color: rgb(51, 51, 51);
+}
+.order-detail .addr-wrapper .addr-content .receiver {
+  display: flex;
+  justify-content: space-between;
+  font-size: 28rpx;
+}
+.order-detail .addr-wrapper .addr-content .receiver.top-inner {
+  font-size: 24rpx;
+}
+.order-detail .addr-wrapper .addr-content .address {
+  margin-top: 24rpx;
+  line-height: 1.2;
+  font-size: 24rpx;
+}
+.order-detail .addr-wrapper .addr-right .img {
+  width: 16rpx;
+  height: 28rpx;
+  margin-left: 60rpx;
+}
+.order-detail .addr-no-content {
+  padding: 18rpx 0;
+  text-align: center;
+  width: 100%;
+  font-size: 0;
+}
+.order-detail .addr-no-content .no-addr {
+  width: 70rpx;
+  height: 70rpx;
+  margin-bottom: 18rpx;
+}
+.order-detail .addr-no-content .bottom {
+  font-size: 26rpx;
+  color: #333;
+}
+.order-detail .addr-no-content .bottom .btn {
+  display: inline-block;
+  width: 116rpx;
+  height: 42rpx;
+  line-height: 42rpx;
+  margin-left: 20rpx;
+  border: 2rpx dotted #72a52c;
+  border-radius: 6rpx;
+  font-size: 24rpx;
+  color: #72a52c;
+}
+.order-detail .products {
+  margin-top: 20rpx;
+  padding-left: 24rpx;
+  background-color: #fff;
+}
+.order-detail .products .p-item {
+  padding: 22rpx 24rpx 22rpx 0;
+  border-bottom: 1rpx solid #ccc;
+  display: flex;
+}
+.order-detail .products .p-item:last-child {
+  border-bottom: none;
+}
+.order-detail .products .p-item .l-img {
+  width: 180rpx;
+  height: 180rpx;
+  flex: 0 0 180rpx;
+}
+.order-detail .products .p-item .l-img .img {
+  width: 100%;
+  height: 100%;
+}
+.order-detail .products .p-item .item-cont {
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+}
+.order-detail .products .p-item .title {
+  font-size: 26rpx;
+  color: rgb(51, 51, 51);
+}
+.order-detail .products .p-item .tip {
+  padding-top: 20rpx;
+  font-size: 24rpx;
+  color: rgb(153, 153, 153);
+}
+.order-detail .products .p-item .btm {
+  font-size: 0;
+}
+.order-detail .products .p-item .unit {
+  font-size: 24rpx;
+  color: rgb(252, 68, 24);
+}
+.order-detail .products .p-item .price {
+  font-size: 30rpx;
+  color: rgb(252, 68, 24);
+}
+.order-detail .products .p-item .count {
+  float: right;
+  font-size: 28rpx;
+  color: rgb(51, 51, 51);
+}
+.order-detail .note {
+  height: 90rpx;
+  margin-top: 20rpx;
+  padding: 24rpx;
+  display: flex;
+  font-size: 28rpx;
+  color: rgb(51, 51, 51);
+  background-color: #fff;
+}
+.order-detail .note .title {
+  flex: 0 0 130rpx;
+}
+.order-detail .note .input-wrap {
+  flex: 1;
+  margin-left: 10rpx;
+}
+.order-detail .bottom-order-info {
+  margin-top: 20rpx;
+  padding: 28rpx 24rpx 18rpx;
+  background: #fff;
+  font-size: 24rpx;
+  color: rgb(51, 51, 51);
+}
+.order-detail .bottom-order-info .text {
+  line-height: 44rpx;
+}
+.order-detail .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 90rpx;
+  background: #fff;
+}
+.order-detail .footer .ftxt {
+  flex: 1;
+  padding-right: 30rpx;
+}
+.order-detail .footer .fbtn {
+  height: 60rpx;
+  line-height: 60rpx;
+  width: 144rpx;
+  float: right;
+  margin-right: 20rpx;
+  margin-top: 15rpx;
+  border: 2rpx solid rgb(114,165,44);
+  border-radius: 6rpx;
+  text-align: center;
+  font-size: 28rpx;
+  color: rgb(114,165,44);
+}
+.order-detail .footer .fbtn.cancel {
+  border: 2rpx solid rgb(204,204,204);
+  color: rgb(153,153,153);
+}
+.order-detail .top-info {
+  color: #fff;
+}
+.order-detail .addr-wrapper.top-info .addr-content {
+  color: #fff;
+}
+.order-detail .addr-wrapper.top-info .wait {
+  padding-right: 40rpx;
+  font-size: 32rpx;
+}

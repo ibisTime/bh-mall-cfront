@@ -1,71 +1,55 @@
 import ajax from '../common/request.js';
 
 // 微信登录
-export function wxLogin(code, suc, fail) {
-  ajax({
+export function wxLogin(code) {
+  return ajax({
     code: 627302,
-    json: { code },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
-    }
+    json: { code }
   });
 }
-
-export function getUserInfo(suc, fail) {
-  ajax({
-    code: 627357,
-    json: {
-      userId: wx.getStorageSync('userId')
-    },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
-    }
-  })
+// 获取用户详情
+export function getUserInfo(suc) {
+  return getUserById(wx.getStorageSync('userId'));
 }
-
+// 根据userId获取用户详情
+export function getUserById(userId) {
+  return ajax({
+    code: 627357,
+    json: { userId }
+  });
+}
+// 获取数据字典列表
+export function getDictList(parentKey) {
+  if (getDictList[parentKey]) {
+    return getDictList[parentKey];
+  }
+  getDictList[parentKey] = ajax({
+    code: 627076,
+    json: { parentKey }
+  });
+  return getDictList[parentKey];
+}
 // 分页查询产品
-export function getPageProduct(start = 1, limit = 100, suc, fail) {
-  ajax({
+export function getPageProduct(start = 1, limit = 100) {
+  return ajax({
     code: 627554,
     json: {
       start,
       limit,
       status: 2
-    },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
     }
   });
 }
-
 // 详情查询产品
-export function getProduct(code, suc, fail) {
-  ajax({
+export function getProduct(code) {
+  return ajax({
     code: 627557,
-    json: {
-      code
-    },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
-    }
+    json: { code }
   });
 }
-
 // 提交订单（无购物车)
-export function applyOrder({ province, city, area, address, signer, mobile, productSpecsCode, applyUser, applyNote, toUser, quantity }, suc, fail) {
-  ajax({
+export function applyOrder({ province, city, area, address, signer, mobile, productSpecsCode, applyUser, applyNote, toUser, quantity }) {
+  return ajax({
     code: 627641,
     json: {
       province,
@@ -80,19 +64,12 @@ export function applyOrder({ province, city, area, address, signer, mobile, prod
       quantity,
       applyUser: wx.getStorageSync('userId'),
       isSendHome: 1
-    },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
     }
   });
 }
-
 // 添加收货地址
-export function addAddress({ province, city, area, address, receiver, mobile, isDefault }, suc, fail) {
-  ajax({
+export function addAddress({ province, city, area, address, receiver, mobile, isDefault }) {
+  return ajax({
     code: 627400,
     json: {
       province,
@@ -104,18 +81,12 @@ export function addAddress({ province, city, area, address, receiver, mobile, is
       isDefault,
       type: 1,
       userId: wx.getStorageSync('userId')
-    },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
     }
   });
 }
 // 修改收货地址
-export function editAddress({ code, province, city, area, address, receiver, mobile, isDefault }, suc, fail) {
-  ajax({
+export function editAddress({ code, province, city, area, address, receiver, mobile, isDefault }) {
+  return ajax({
     code: 627401,
     json: {
       code,
@@ -126,72 +97,57 @@ export function editAddress({ code, province, city, area, address, receiver, mob
       receiver,
       mobile,
       isDefault
-    },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
     }
   });
 }
 // 删除地址
-export function deleteAddress(code, suc, fail) {
-  ajax({
+export function deleteAddress(code) {
+  return ajax({
     code: 627402,
-    json: { code },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
-    }
+    json: { code }
   });
 }
 // 列表查询地址
-export function getAddressList(isDefault, suc, fail) {
-  ajax({
+export function getAddressList(isDefault) {
+  return ajax({
     code: 627411,
     json: {
       isDefault,
       userId: wx.getStorageSync('userId'),
       type: 1
-    },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
     }
   });
 }
 // 详情查询地址
-export function getAddress(code, suc, fail) {
-  ajax({
+export function getAddress(code) {
+  return ajax({
     code: 627412,
-    json: { code },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
-    }
+    json: { code }
   });
 }
 // 分页查询订单
-export function getPageOrder({ start = 1, limit = 100, status = '' }, suc, fail) {
-  ajax({
+export function getPageOrder({ start = 1, limit = 100, status = '' }) {
+  return ajax({
     code: 627665,
     json: {
       start,
       limit,
-      status
-    },
-    success: function (data) {
-      suc && suc(data);
-    },
-    fail: function (err) {
-      fail && fail(err);
+      status,
+      applyUser: wx.getStorageSync('userId')
     }
+  });
+}
+// 详情查询订单
+export function getOrder(code) {
+  return ajax({
+    code: 627664,
+    json: { code }
+  });
+}
+// 支付订单
+export function payOrder(codeList) {
+  return ajax({
+    code: 627642,
+    json: { codeList, payType: 1 }
   });
 }

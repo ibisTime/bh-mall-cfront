@@ -1,4 +1,4 @@
-import { getAddressList, applyOrder } from '../../api/api.js';
+import { getAddressList, applyOrder, payOrder } from '../../api/api.js';
 
 const app = getApp();
 
@@ -11,7 +11,7 @@ Page({
     address: null,
     cartList: [],
     productSpecsCode: '',
-    toUser: 'U201804152047269961875'
+    toUser: wx.getStorageSync('toUser')
   },
   onLoad: function (options) {
     this.setAddr();
@@ -30,6 +30,17 @@ Page({
       products: app.globalData.products,
       totalAmount: amount
     });
+  },
+  onShow: function () {
+    if (app.globalData.choseAddr) {
+      let addr = app.globalData.choseAddr;
+      this.setData({
+        address: {
+          ...addr,
+          singer: addr.receiver
+        }
+      });
+    }
   },
   // 设置收件地址
   setAddr() {
@@ -50,7 +61,7 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    getAddressList(1, (data) => {
+    getAddressList(1).then((data) => {
       if (data.length) {
         this.setData({
           address: {
@@ -60,7 +71,7 @@ Page({
         });
       }
       wx.hideLoading();
-    }, () => {
+    }).catch(() => {
       wx.hideLoading();
     });
   },
@@ -77,11 +88,13 @@ Page({
   },
   // 下单
   applyOrder() {
-    wx.showLoading({
-      title: '下单中...'
-    });
-    if (this.data.buyType == 0) {
-      this.apply();
+    if (app.hasToUser()) {
+      wx.showLoading({
+        title: '下单中...'
+      });
+      if (this.data.buyType == 0) {
+        this.apply();
+      }
     }
   },
   // 商品详情直接下单
@@ -92,11 +105,24 @@ Page({
       productSpecsCode: this.data.productSpecsCode,
       applyNote: this.data.applyNote,
       toUser: this.data.toUser
-    }, (data) => {
-      console.log(data);
+    }).then((data) => {
+      app.globalData.reloadOrders = true;
+      this.payOrder(data.code);
+    }).catch(() => {
       wx.hideLoading();
-    }, () => {
+    });
+  },
+  payOrder(code) {
+    payOrder(code).then(() => {}).catch(() => {
       wx.hideLoading();
+      wx.showModal({
+        title: '提示',
+        content: '支付失败',
+        showCancel: false,
+        success: () => {
+          wx.switchTab('../order/order');
+        }
+      });
     });
   }
 })

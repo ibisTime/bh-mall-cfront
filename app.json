@@ -7,7 +7,8 @@
     "pages/setting/setting",
     "pages/address/address",
     "pages/apply-order/apply-order",
-    "pages/addedit-address/addedit-address"
+    "pages/addedit-address/addedit-address",
+    "pages/order-detail/order-detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

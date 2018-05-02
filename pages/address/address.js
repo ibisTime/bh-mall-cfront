@@ -7,7 +7,8 @@ Page({
   data: {
     first: true,
     addrList: [],
-    scrollHeight: 100
+    scrollHeight: 100,
+    choseAddr: {}
   },
   onLoad: function (options) {
     wx.getSystemInfo({
@@ -31,16 +32,16 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    getAddressList(null, (addrList) => {
+    getAddressList().then((addrList) => {
       let choseAddr = app.globalData.choseAddr;
       if (!choseAddr) {
         let arr = addrList.filter(v => v.isDefault == 1);
-        choseAddr = arr.length ? arr[0] : addrList[0];
+        choseAddr = arr.length ? arr[0] : addrList.length ? addrList[0] : {};
         app.globalData.choseAddr = choseAddr;
       }
       this.setData({ addrList, choseAddr });
       wx.hideLoading();
-    }, () => {
+    }).catch(() => {
       wx.hideLoading();
     });
   },
@@ -74,13 +75,13 @@ Page({
     wx.showLoading({
       title: '删除中...',
     });
-    deleteAddress(code, () => {
+    deleteAddress(code).then(() => {
       wx.hideLoading();
       if (this.data.choseAddr.code == code) {
         app.globalData.choseAddr = null;
       }
       this.getAddressList();
-    }, () => {
+    }).catch(() => {
       wx.hideLoading();
     });
   }

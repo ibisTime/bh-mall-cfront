@@ -1,0 +1,60 @@
+<view class='order-detail'>
+  <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
+  <view wx:if="{{order.status=='0'}}" class='top-info addr-wrapper'>
+    <view class='addr-list'>
+        <view class='wait-icon'><image class='img' src='../../images/img/wait@2x.png'/></view>
+        <view class='wait'>等待付款</view>
+        <view class='addr-content'>
+          <view class='receiver top-inner'>订单编号：{{order.code}}</view>
+          <view class='receiver top-inner mt10'>创建时间：{{order.applyDatetime}}</view>
+        </view>
+      </view>
+  </view>
+  <view class='bgf'>
+    <view class='addr-wrapper'>
+      <view class='addr-list'>
+        <view class='addr-icon'><image class='img' src='../../images/img/addr@3x.png'/></view>
+        <view class='addr-content'>
+          <view class='receiver'>
+            <view>收货人：{{order.singer}}</view>
+            <view>{{order.mobile}}</view>
+          </view>
+          <view class='address'>收货地址：{{order.province}} {{order.city}} {{order.area}} {{order.address}}</view>
+        </view>
+      </view>
+    </view>
+    <view wx:if="{{order.logisticsCode}}" class='addr-wrapper car-wrapper'>
+      <view class='addr-list'>
+        <view class='car-icon'><image class='img' src='../../images/img/deliver@2x.png'/></view>
+        <view class='addr-content'>
+          <view class='receiver'>物流公司：{{order.logisticsCompany}}</view>
+          <view class='receiver mt10'>物流单号：{{order.logisticsCode}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
+  <view class='products'>
+    <view class='p-item' bindtap='goDetail' data-code="{{order.productCode}}">
+      <view class='l-img'><image class='img' src="{{comFmt.formatImg(order.pic)}}"/></view>
+      <view class='item-cont'>
+        <view class='title'><text>{{order.productName}}</text></view>
+        <view class='tip'><text>{{order.productSpecsName}}</text></view>
+        <view class='btm'><text class='unit'>¥</text><text class='price'>{{comFmt.formatPrice(order.price)}}</text><text class='count'>X{{order.quantity}}</text></view>
+      </view>
+    </view>
+  </view>
+  <view class='note'>
+    <view class='title'><text>买家嘱咐:</text></view>
+    <view class='input-wrap'>{{order.applyNote}}</view>
+  </view>
+  <view class='bottom-order-info'>
+    <view class='text'>订单号：{{order.code}}</view>
+    <view class='text'>下单时间：{{order.applyDatetime}}</view>
+    <view class='text' wx:if="{{order.deliveDatetime}}">发货时间：{{order.deliveDatetime}}</view>
+  </view>
+  <view style='height:130rpx;'></view>
+  <view class='footer'>
+    <view class='fbtn' bindtap='payOrder'><text>去付款</text></view>
+  </view>
+</view>

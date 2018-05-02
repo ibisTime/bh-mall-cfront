@@ -22,37 +22,21 @@ Page({
   onLoad: function(options) {
     this.getProductList();
   },
-  getReferenceId() {
-    let str = 'U201804152047269961875';
-    // 获取地址栏代理userId
-    // let str = decodeURIComponent(options.q)
-    // let reg = /[^=]*=([^=]*)/;
-    // str=str.replace(reg,"$1");
-    //获取用户信息的等级信息
-    // request.ajax({
-    //   code:'627357',
-    //   json:{
-    //     userId:str,
-    //   },
-    //   success:function(res){
-    //   }
-    // })
-  },
   // 查询产品列表
   getProductList() {
     if (this.data.hasMore && !this.data.fetching) {
-      getPageProduct(
-        this.data.start,
-        this.data.limit,
-        (res) => {
+      getPageProduct(this.data.start, this.data.limit)
+        .then((res) => {
           this.setData({
             list: res.list,
             start: ++this.data.start,
             hasMore: res.pageNO < res.totalPage
           });
-        },
-        function (err) { }
-      );
+        }).catch((err) => {
+          this.setData({
+            hasMore: false
+          });
+        });
     }
   },
   onReachBottom() {

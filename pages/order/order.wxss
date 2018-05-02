@@ -7,7 +7,7 @@
 }
 .orders-wrapper .top-scroll .item {
   display: inline-block;
-  padding: 0 50rpx;
+  padding: 0 40rpx;
   text-align: center;
   font-size: 30rpx;
   color: rgb(51, 51, 51);

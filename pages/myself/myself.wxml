@@ -1,13 +1,13 @@
-<!--pages/myself/myself.wxml-->
 <view class="myself">
+  <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
   <view class="top">
     <view class="user">
       <view class="head-pic">
-        <image src="../../images/img/timg.jpg"></image>
+        <image src="{{comFmt.formatImg(userInfo.photo)}}"></image>
       </view>
       <view class="user-info">
-        <text class="name">张三</text>
-        <text class="tel">18888888888</text>
+        <text class="name">{{userInfo.nickname}}</text>
+        <!-- <text class="tel">{{userInfo.mobile}}</text> -->
       </view>
     </view>
   </view>

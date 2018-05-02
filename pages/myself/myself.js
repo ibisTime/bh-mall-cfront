@@ -1,27 +1,20 @@
-//index.js
-//获取应用实例
-const app = getApp()
+import { getUserInfo } from '../../api/api.js';
+
+const app = getApp();
 
 Page({
   data: {
     userInfo: {},
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
   onLoad: function (options) {
-    wx.login({
-        success:function(){
-            wx.getUserInfo({
-                success:function(res){
-                    var simpleUser = res.userInfo;
-                    console.log(simpleUser.nickName);
-                }
-            });
-        }
+    wx.showLoading({
+      title: '加载中...'
+    });
+    getUserInfo().then((userInfo) => {
+      this.setData({ userInfo });
+      wx.hideLoading();
+    }).catch(() => {
+      wx.hideLoading();
     });
   },
 })

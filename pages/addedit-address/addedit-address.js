@@ -37,13 +37,13 @@ Page({
     wx.showLoading({
       title: '加载中...',
     });
-    getAddress(code, (data) => {
+    getAddress(code).then((data) => {
       wx.hideLoading();
       this.setData({
         ...data,
         region: [data.province, data.city, data.area]
       });
-    }, () => {
+    }).catch(() => {
       wx.hideLoading();
     });
   },
@@ -69,8 +69,8 @@ Page({
     });
     let { receiver, mobile, province, city, area, address, isDefault } = this.data;
 
-    addAddress({ receiver, mobile, province, city, area, address, isDefault },
-      (data) => {
+    addAddress({ receiver, mobile, province, city, area, address, isDefault })
+      .then((data) => {
         app.globalData.choseAddr = {
           receiver,
           mobile,
@@ -85,7 +85,7 @@ Page({
         wx.navigateBack({
           delta: 1
         });
-      }, () => {
+      }).catch(() => {
         wx.hideLoading();
       });
   },
@@ -96,24 +96,23 @@ Page({
     });
     let { code, receiver, mobile, province, city, area, address, isDefault } = this.data;
 
-    editAddress({ code, receiver, mobile, province, city, area, address, isDefault },
-      () => {
-        app.globalData.choseAddr = {
-          code,
-          receiver,
-          mobile,
-          province,
-          city,
-          area,
-          address,
-          isDefault
-        };
-        wx.hideLoading();
-        wx.navigateBack({
-          delta: 1
-        });
-      }, () => {
-        wx.hideLoading();
+    editAddress({ code, receiver, mobile, province, city, area, address, isDefault }).then(() => {
+      app.globalData.choseAddr = {
+        code,
+        receiver,
+        mobile,
+        province,
+        city,
+        area,
+        address,
+        isDefault
+      };
+      wx.hideLoading();
+      wx.navigateBack({
+        delta: 1
       });
+    }).catch(() => {
+      wx.hideLoading();
+    });
   }
 })
