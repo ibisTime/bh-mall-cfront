@@ -9,7 +9,7 @@ App({
     if (!wx.getStorageSync('userId')) {
       this.wxLogin();
     } else {
-      this.wxLogin();
+      // this.wxLogin();
     } 
   },
   // 登录
