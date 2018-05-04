@@ -1,0 +1,5 @@
+<template name="noData">
+  <view style='height:100rpx;line-height:100rpx;font-size:32rpx;text-align:center;'>
+    <text>暂无数据</text>
+  </view>
+</template>

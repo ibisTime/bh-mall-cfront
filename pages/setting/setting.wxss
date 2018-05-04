@@ -1,1 +1,27 @@
-/* pages/setting/setting.wxss */
+.item{
+    margin-top: 20rpx;
+    padding: 0 24rpx;
+    height: 120rpx;
+    overflow: hidden;
+    background-color: #fff;
+}
+.item .ico{ 
+    margin-top: 43rpx;
+    float: left;
+    width: 35rpx;
+    height: 35rpx;
+    vertical-align: middle;
+}
+.item .text{ 
+    margin-top: 38rpx;
+    float: left;
+    margin-left: 30rpx;
+    font-size: 32rpx;
+    color: rgb(72, 72, 72);
+}
+.item .more{ 
+    margin-top: 43rpx;
+    float: right;
+    width: 18rpx;
+    height: 28rpx;
+}

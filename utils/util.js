@@ -57,3 +57,27 @@ export function formatDate(date, fmt = 'yyyy-MM-dd') {
   }
   return fmt;
 }
+// 显示loading
+export function showLoading(title = '加载中...') {
+  wx.showLoading({ title });
+}
+// 显示警告或错误
+export function showWarn(title, duration = 1500) {
+  wx.showToast({
+    title,
+    duration,
+    icon: 'none'
+  });
+}
+// 显示成功提示
+export function showSuc(title, duration = 1000) {
+  wx.showToast({
+    title,
+    duration,
+    icon: 'success'
+  });
+}
+// 获取userId
+export function getUserId() {
+  return wx.getStorageSync('userId');
+}

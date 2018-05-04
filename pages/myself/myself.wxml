@@ -1,36 +1,40 @@
 <view class="myself">
   <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
   <view class="top">
-    <view class="user">
-      <view class="head-pic">
-        <image src="{{comFmt.formatImg(userInfo.photo)}}"></image>
+    <view class="user" wx:if="{{login}}">
+      <view class='userinfo'>
+        <view class="head-pic">
+          <image src="{{comFmt.formatImg(userInfo.photo)}}"></image>
+        </view>
+        <view class="user-info">
+          <text class="name">{{userInfo.nickname}}</text>
+        </view>
       </view>
-      <view class="user-info">
-        <text class="name">{{userInfo.nickname}}</text>
-        <!-- <text class="tel">{{userInfo.mobile}}</text> -->
+    </view>
+    <view wx:else class="user" catchtap='login'>
+      <view class="userinfo" style="margin-top: 28rpx;margin-left: 100rpx;">
+        <text class="user-info">点击登录</text>
       </view>
     </view>
   </view>
-  <navigator url='/pages/setting/setting'>
-    <view class="item" bindgetuserinfo="getUserInfo">
-      <image class="ico" src="../../images/img/anquanzhongxin@2x.png"></image>
-      <text class="text">安全中心</text>
-      <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
-    </view>
-  </navigator>
-  <view class="item">
+  <view class="item" catchtap='goSetting'>
+    <image class="ico" src="../../images/img/anquanzhongxin@2x.png"></image>
+    <text class="text">安全中心</text>
+    <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
+  </view>
+  <view class="item" catchtap='goHelp'>
     <image class="ico" src="../../images/img/changjianwenti@2x.png"></image>
     <text class="text">常见问题</text>
     <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
   </view>
-  <view class="item">
+  <view class="item" bindtap="callPhone">
     <image class="ico" src="../../images/img/lianxidaili@2x.png"></image>
     <text class="text">联系代理</text>
     <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
   </view>
-  <view class="item">
-      <image class="ico" src="../../images/img/banbenhao@2x.png"></image>
-      <text class="text">版本号</text>
-      <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
-    </view>
+  <!-- <view class="item" bindtap="goVersion">
+    <image class="ico" src="../../images/img/banbenhao@2x.png"></image>
+    <text class="text">版本号</text>
+    <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
+  </view> -->
 </view>

@@ -1,19 +1,15 @@
-import { wxLogin } from 'api/api.js';
+import { wxLogin, getUserById } from 'api/api.js';
 import { formatImg } from 'utils/util.js';
 
 App({
   onLaunch: function (options) {
     this.getReferenceId(options.query.q);
-    // wx.setStorageSync('userId', 'U201804152047269961875');
-    // wx.setStorageSync('token', 'TUSYS201800000000002TK201804290830290514518');
     if (!wx.getStorageSync('userId')) {
       this.wxLogin();
-    } else {
-      // this.wxLogin();
-    } 
+    }
   },
   // 登录
-  wxLogin() {
+  wxLogin(suc, err) {
     wx.login({
       success: res => {
         wx.getUserInfo({
@@ -30,11 +26,13 @@ App({
         wxLogin(res.code).then((data) => {
           wx.setStorageSync('userId', data.userId);
           wx.setStorageSync('token', data.token);
+          suc && suc();
         }).catch(() => {
           wx.showToast({
             title: '登录失败',
             icon: 'none'
           });
+          err && err();
         });
       },
       error: () => {
@@ -50,7 +48,10 @@ App({
       url = decodeURIComponent(url);
       var match = /userId=([^&$]+)/.exec(url);
       if (match) {
-        wx.setStorageSync('toUser', match[1]);
+        wx.setStorageSync('toUser', { userId: match[1] });
+        getUserById(match[1]).then((data) => {
+          wx.setStorageSync('toUser', data);
+        }).catch(() => {});
       } else {
         this.hasToUser();
       }
@@ -59,7 +60,6 @@ App({
     }
   },
   hasToUser() {
-    wx.setStorageSync('toUser', 'U201804152047269961875');
     if (!wx.getStorageSync('toUser')) {
       wx.showModal({
         title: '提示',
@@ -73,6 +73,6 @@ App({
   globalData: {
     products: [],
     choseAddr: null,
-    reloadOrders: true
+    reloadOrders: false
   }
 })

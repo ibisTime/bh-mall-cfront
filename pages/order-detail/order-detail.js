@@ -1,5 +1,6 @@
-import { getOrder, payOrder } from '../../api/api.js';
-import { formatDate } from '../../utils/util.js';
+import { getOrder, payOrder, cancelOrder, receiveOrder } from '../../api/api.js';
+import { formatDate, showLoading, showSuc } from '../../utils/util.js';
+import { wxPay } from '../../utils/weixin.js';
 
 const app = getApp();
 
@@ -11,9 +12,7 @@ Page({
     this.getOrder(options.code);
   },
   getOrder(code) {
-    wx.showLoading({
-      title: '加载中...',
-    });
+    showLoading();
     getOrder(code).then((order) => {
       wx.hideLoading();
       order = {
@@ -25,38 +24,76 @@ Page({
       wx.hideLoading();
     });
   },
+  // 支付订单
   payOrder() {
-    wx.showLoading({
-      title: '支付中...',
-    });
+    showLoading('支付中...');
     payOrder(this.data.order.code).then((data) => {
-      wx.requestPayment({
-        timeStamp: data.timeStamp,
-        nonceStr: data.nonceStr,
-        package: data.wechatPackage,
-        signType: data.signType,
-        paySign: data.paySign,
-        success: (res) => {
-          wx.hideLoading();
-          app.globalData.reloadOrders = true;
-          wx.showToast({
-            title: '支付成功',
-            duration: 1000
+      wx.hideLoading();
+      wxPay(data).then(() => {
+        showSuc('支付成功');
+        app.globalData.reloadOrders = true;
+        setTimeout(() => {
+          wx.switchTab({
+            url: '../order/order',
           });
-          setTimeout(() => {
-            wx.switchTab({
-              url: '../order/order',
-            });
-          }, 1000);
-        },
-        fail: (res) => {
-          wx.hideLoading();
-          if (res.errMsg != 'requestPayment:fail cancel') {
-            wx.showToast({
-              title: '支付失败',
-              icon: 'none'
-            });
-          }
+        }, 1000);
+      }).catch(() => {});
+    }).catch(() => {
+      wx.hideLoading();
+    });
+  },
+  // 点击取消订单
+  cancel() {
+    wx.showModal({
+      title: '提示',
+      content: '确定提交取消订单申请吗?',
+      success: (res) => {
+        if (res.confirm) {
+          this.cancelOrder();
+        }
+      }
+    });
+  },
+  // 取消订单
+  cancelOrder() {
+    showLoading('取消中...');
+    cancelOrder(this.data.order.code).then(() => {
+      wx.hideLoading();
+      showSuc('取消订单申请提交成功');
+      app.globalData.reloadOrders = true;
+      this.setData({
+        order: {
+          ...this.data.order,
+          status: '5'
+        }
+      });
+    }).catch(() => {
+      wx.hideLoading();
+    });
+  },
+  // 点击确认收货
+  receive(e) {
+    wx.showModal({
+      title: '提示',
+      content: '确定收货吗?',
+      success: (res) => {
+        if (res.confirm) {
+          this.receiveOrder();
+        }
+      }
+    });
+  },
+  // 确认收货
+  receiveOrder(code) {
+    showLoading('收货中...');
+    receiveOrder(this.data.order.code).then(() => {
+      wx.hideLoading();
+      showSuc('收货成功');
+      app.globalData.reloadOrders = true;
+      this.setData({
+        order: {
+          ...this.data.order,
+          status: '4'
         }
       });
     }).catch(() => {

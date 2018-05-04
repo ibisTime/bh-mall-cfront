@@ -1,4 +1,4 @@
-import ajax from '../common/request.js';
+import ajax from '../utils/request.js';
 
 // 微信登录
 export function wxLogin(code) {
@@ -8,7 +8,7 @@ export function wxLogin(code) {
   });
 }
 // 获取用户详情
-export function getUserInfo(suc) {
+export function getUserInfo() {
   return getUserById(wx.getStorageSync('userId'));
 }
 // 根据userId获取用户详情
@@ -144,10 +144,45 @@ export function getOrder(code) {
     json: { code }
   });
 }
+// 取消订单
+export function cancelOrder(code) {
+  return ajax({
+    code: 627646,
+    json: { code }
+  });
+}
 // 支付订单
 export function payOrder(codeList) {
   return ajax({
     code: 627642,
     json: { codeList, payType: 1 }
+  });
+}
+// 确认收货
+export function receiveOrder(code) {
+  return ajax({
+    code: 627649,
+    json: { code }
+  });
+}
+// 获取banner
+export function getBanners() {
+  return ajax({
+    code: 627036,
+    json: {
+      type: 2,
+      location: 'index_banner'
+    }
+  });
+}
+// 获取系统参数
+export function getSysConfig(ckey) {
+  return ajax({
+    code: 627087,
+    json: {
+      ckey,
+      companyCode: 'CD-CBH000020',
+      systemCode: 'CD-CBH000020'
+    }
   });
 }

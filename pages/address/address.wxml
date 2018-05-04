@@ -1,4 +1,5 @@
 <view class='address-wrapper'>
+  <import src="../../components/noData.wxml"/>
   <scroll-view scroll-y="true" style="height:{{scrollHeight}}px;">
     <view class='addr-list'>
       <view wx:for='{{addrList}}' wx:key='{{item.code}}' data-idx='{{index}}' bindtap='choseItem' class='item'>
@@ -17,6 +18,7 @@
           <view class='edit' data-code="{{item.code}}" catchtap='editItem'><image class='img' src='../../images/img/edit@2x.png'/>编辑</view>
         </view>
       </view>
+      <view wx:if="{{!addrList.length}}"><template is="noData"/></view>
     </view>
     <view style='height: 90rpx;'></view>
     <view class='footer'>

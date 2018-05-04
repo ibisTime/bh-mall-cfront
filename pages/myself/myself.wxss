@@ -1,8 +1,5 @@
-/* pages/myself/myself.wxss */
-
 .userinfo {
     display: flex;
-    flex-direction: column;
     align-items: center;
 }
 
@@ -21,9 +18,6 @@
     margin-top: 200px;
 }
 
-
-
-
 .myself{
     height: 100%;
     background-color: #f7f7f7;
@@ -31,7 +25,6 @@
 
 .top{
     height: 300rpx;
-    /* background-image: url('../../images/img/wodebeijing@2x.png'); */
     background-color: #73A62E;
     position: relative;
 }
@@ -57,12 +50,11 @@
     height: 100%;
 }
 .top .user .user-info{
-    margin-left: 200rpx;
+    margin-left: 20rpx;
     color: #fff;
 }
 .top .user .user-info .name{
     display: block;
-    margin-top: 20rpx;
     font-size: 36rpx;
 }
 .top .user .user-info .tel{

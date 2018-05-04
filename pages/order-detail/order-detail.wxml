@@ -1,9 +1,9 @@
 <view class='order-detail'>
   <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
-  <view wx:if="{{order.status=='0'}}" class='top-info addr-wrapper'>
+  <view class='top-info addr-wrapper'>
     <view class='addr-list'>
         <view class='wait-icon'><image class='img' src='../../images/img/wait@2x.png'/></view>
-        <view class='wait'>等待付款</view>
+        <view class='wait'>{{comFmt.formatStatus(order.status)}}</view>
         <view class='addr-content'>
           <view class='receiver top-inner'>订单编号：{{order.code}}</view>
           <view class='receiver top-inner mt10'>创建时间：{{order.applyDatetime}}</view>
@@ -54,7 +54,15 @@
     <view class='text' wx:if="{{order.deliveDatetime}}">发货时间：{{order.deliveDatetime}}</view>
   </view>
   <view style='height:130rpx;'></view>
-  <view class='footer'>
-    <view class='fbtn' bindtap='payOrder'><text>去付款</text></view>
+  <view class='footer' wx:if="{{order.status=='0'||order.status=='3'}}">
+    <view class='fbtn' wx:if="{{order.status=='0'}}" bindtap='payOrder'>
+      <text>去付款</text>
+    </view>
+    <view class='fbtn cancel' wx:if="{{order.status=='0'}}" bindtap='cancel'>
+      <text>取消订单</text>
+    </view>
+    <view class='fbtn' wx:if="{{order.status=='3'}}" bindtap='receive'>
+      <text>确认收货</text>
+    </view>
   </view>
 </view>

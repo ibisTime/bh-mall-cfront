@@ -1,4 +1,6 @@
 import { getAddressList, applyOrder, payOrder } from '../../api/api.js';
+import { showSuc } from '../../utils/util.js';
+import { wxPay } from '../../utils/weixin.js';
 
 const app = getApp();
 
@@ -11,10 +13,14 @@ Page({
     address: null,
     cartList: [],
     productSpecsCode: '',
-    toUser: wx.getStorageSync('toUser')
+    toUser: ''
   },
   onLoad: function (options) {
     this.setAddr();
+    let toUser = wx.getStorageSync('toUser');
+    this.setData({
+      toUser: toUser ? toUser.userId : ''
+    });
     // 商品详情直接下单
     if (options.type == 0) {
       this.setData({
@@ -113,14 +119,24 @@ Page({
     });
   },
   payOrder(code) {
-    payOrder(code).then(() => {}).catch(() => {
+    payOrder(code).then((data) => {
+      wx.hideLoading();
+      wxPay(data).then(() => {
+        showSuc('支付成功');
+        wx.switchTab({
+          url: '../order/order'
+        });
+      }).catch(() => {});
+    }).catch(() => {
       wx.hideLoading();
       wx.showModal({
         title: '提示',
         content: '支付失败',
         showCancel: false,
         success: () => {
-          wx.switchTab('../order/order');
+          wx.switchTab({
+            url: '../order/order'
+          });
         }
       });
     });

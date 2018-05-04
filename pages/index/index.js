@@ -1,14 +1,10 @@
-import { getPageProduct } from '../../api/api.js';
+import { getPageProduct, getBanners } from '../../api/api.js';
 // 获取应用实例
 const app = getApp()
 
 Page({
   data: {
-    imgUrls: [
-      'http://img02.tooopen.com/images/20150928/tooopen_sy_143912755726.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175866434296.jpg',
-      'http://img06.tooopen.com/images/20160818/tooopen_sy_175833047715.jpg'
-    ],
+    banners: [],
     indicatorDots: true,
     autoplay: true,
     interval: 2000,
@@ -21,6 +17,7 @@ Page({
   },
   onLoad: function(options) {
     this.getProductList();
+    this.getBanners();
   },
   // 查询产品列表
   getProductList() {
@@ -38,6 +35,16 @@ Page({
           });
         });
     }
+  },
+  getBanners() {
+    getBanners().then((banners) => {
+      this.setData({ banners });
+    }).catch(() => {});
+  },
+  goDetail(e) {
+    wx.navigateTo({
+      url: '../goodsdetail/goodsdetail?code=' + e.currentTarget.dataset.code
+    });
   },
   onReachBottom() {
     this.getProductList();
