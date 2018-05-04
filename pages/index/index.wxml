@@ -1,8 +1,8 @@
 <import src="../loading/loading.wxml"/>
-<view class="top">
+<!-- <view class="top">
   <image class="search" src="../../images/img/sousuo@2x.png"></image>
   <input class="proName" type="text" placeholder="请输入您感兴趣的商品"></input>
-</view>
+</view> -->
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{banners}}" wx:key="{{item.code}}">
     <swiper-item>

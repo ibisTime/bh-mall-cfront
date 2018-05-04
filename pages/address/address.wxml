@@ -13,7 +13,7 @@
           <view class='chose {{choseAddr.code==item.code?"act":""}}'></view>
         </view>
         <view class='addr-operator clearfix'>
-          <view class='default {{item.isDefault==1?"act":""}}'>默认</view>
+          <view catchtap='setDefault' data-code='{{item.code}}' class='default {{item.isDefault==1?"act":""}}'>默认</view>
           <view class='delete' data-code="{{item.code}}" catchtap='deleteItem'><image class='img' src='../../images/img/delete@2x.png'/>删除</view>
           <view class='edit' data-code="{{item.code}}" catchtap='editItem'><image class='img' src='../../images/img/edit@2x.png'/>编辑</view>
         </view>

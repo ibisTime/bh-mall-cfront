@@ -1,0 +1,6 @@
+<view class="cart-wrapper">
+  <view class="cart-list">
+  </view>
+  <view class="cart-footer">
+  </view>
+</view>

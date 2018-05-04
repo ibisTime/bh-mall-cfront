@@ -1,4 +1,5 @@
-import { getAddressList, deleteAddress } from '../../api/api.js';
+import { getAddressList, deleteAddress, setDefaultAddr } from '../../api/api.js';
+import { showLoading } from '../../utils/util.js';
 
 // 获取应用实例
 const app = getApp();
@@ -29,9 +30,7 @@ Page({
   },
   // 获取地址列表
   getAddressList() {
-    wx.showLoading({
-      title: '加载中...',
-    });
+    showLoading();
     getAddressList().then((addrList) => {
       let choseAddr = app.globalData.choseAddr;
       if (!choseAddr) {
@@ -80,6 +79,15 @@ Page({
       if (this.data.choseAddr.code == code) {
         app.globalData.choseAddr = null;
       }
+      this.getAddressList();
+    }).catch(() => {
+      wx.hideLoading();
+    });
+  },
+  setDefault(e) {
+    showLoading('删除中...');
+    setDefaultAddr(e.target.dataset.code).then(() => {
+      wx.hideLoading();
       this.getAddressList();
     }).catch(() => {
       wx.hideLoading();

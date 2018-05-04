@@ -107,6 +107,13 @@ export function deleteAddress(code) {
     json: { code }
   });
 }
+// 设置默认地址
+export function setDefaultAddr(code) {
+  return ajax({
+    code: 627403,
+    json: { code }
+  });
+}
 // 列表查询地址
 export function getAddressList(isDefault) {
   return ajax({

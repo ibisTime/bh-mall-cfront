@@ -9,7 +9,8 @@
     "pages/apply-order/apply-order",
     "pages/addedit-address/addedit-address",
     "pages/order-detail/order-detail",
-    "pages/help/help"
+    "pages/help/help",
+    "pages/cart/cart"
   ],
   "window": {
     "backgroundTextStyle": "light",
