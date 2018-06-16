@@ -16,12 +16,12 @@
             <text class="oldPrice">市场参考价：￥{{comFmt.formatPrice(detail.price)}}</text>
         </view>
     </view>
-    <view class="detail">
+    <!-- <view class="detail">
         <text class="title">
             <text class="text">商品详情</text>
         </text>
         <rich-text nodes="{{info}}"></rich-text>
-    </view>
+    </view> -->
   </view>
   <view class="footer">
       <view class="link">
@@ -29,12 +29,12 @@
               <image class="img" src="../../images/img/kefu@2x.png"></image>
               <text class="text">客服</text>
           </view>
-          <view class="car">
+          <view class="car" catchtap='goCart'>
               <image class="img" src="../../images/img/gouwuche@2x.png"></image>
               <text class="text">购物车</text>
           </view>
       </view>
-      <view class="shopCar">加入购物车</view>
+      <view class="shopCar" catchtap='addCart'>加入购物车</view>
       <view class="buy" bindtap='showMask'>立即购买</view>
   </view>
   <block wx:if="{{showMask}}">

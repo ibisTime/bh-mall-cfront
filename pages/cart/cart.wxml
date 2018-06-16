@@ -1,6 +1,44 @@
 <view class="cart-wrapper">
-  <view class="cart-list">
-  </view>
+  <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
+  <scroll-view class="cart-list" scroll-y style="height: {{scrollHeight}}px;" bindscrolltolower="getPageCart" enable-back-to-top>
+    <view wx:if="{{!list.length}}" class="no-cart-wrapper">
+      <image class="cart-img" src="../../images/img/cart@2x.png"></image>
+      <text class='cart-tip'>购物车空空如也，赶紧去逛逛吧!</text>
+      <view class='no-btn' catchtap='goHome'>去逛逛</view>
+    </view>
+    <view class="cart-item" wx:for="{{list}}" wx:key="{{item.code}}">
+      <view class="chose-item" catchtap='choseItem' data-code="{{item.code}}">
+        <view class="chose {{item.checked ? 'act' : ''}}"></view>
+      </view>
+      <view class='img-item'><image class="p-img" src="{{comFmt.formatImg(item.product.pic)}}"></image></view>
+      <view class="info-item">
+        <view class="title">{{item.product.name}}</view>
+        <view class="btm-info">
+          <text class="price">¥{{comFmt.formatPrice(item.price)}}</text>
+          <text class="diamonds decrease" data-code="{{item.code}}" catchtap='decrease'>-</text>
+          <input
+            data-code="{{item.code}}"
+            class="num"
+            bindconfirm="inputChange" 
+            bindblur="inputChange"
+            value="{{item.quantity}}" 
+            type="number"/>
+          <text class="diamonds" data-code="{{item.code}}" catchtap="add">+</text>
+          <view data-code="{{item.code}}" catchtap='deleteItem' class="delete-item"></view>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
   <view class="cart-footer">
+    <view class="cart-inner-footer" wx:if="{{list.length}}">
+      <view class="left-item clearfix">
+        <view class='chose-item' catchtap='choseAll'>
+          <view class="chose {{checkAll ? 'act' : ''}}"></view>
+          <text>全选</text>
+        </view>
+        <view class="price-item">合计：<text class="price">¥{{comFmt.formatPrice(totalAmount)}}</text></view>
+      </view>
+      <view catchtap='buy' class="right-item">购买</view>
+    </view>
   </view>
 </view>

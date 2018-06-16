@@ -34,7 +34,7 @@
           <view class='title'>
             <view class='left'>{{item.productName}}</view>
             <view class='unit-price'>
-              <view>¥{{comFmt.formatPrice(item.product.price)}}</view>
+              <view>¥{{comFmt.formatPrice(item.price)}}</view>
               <view>X{{item.quantity}}</view>
             </view>
           </view>

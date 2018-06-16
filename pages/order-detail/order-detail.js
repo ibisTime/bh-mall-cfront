@@ -27,7 +27,7 @@ Page({
   // 支付订单
   payOrder() {
     showLoading('支付中...');
-    payOrder(this.data.order.code).then((data) => {
+    payOrder([this.data.order.code]).then((data) => {
       wx.hideLoading();
       wxPay(data).then(() => {
         showSuc('支付成功');

@@ -17,9 +17,9 @@
       <view class='title'><text>详细地址</text></view>
       <view class='input'><textarea bindinput='bindKeyInput' data-name='address' value='{{address}}' auto-height placeholder='请输入详细地址' /></view>
     </view>
-    <view class='item mt20'>
+    <view class='item mt20' bindtap='choseAddr'>
       <view class='dtitle'><text>设为默认地址</text></view>
-      <view class='chose {{isDefault==1?"act":""}}' bindtap='choseAddr'></view>
+      <view class='chose {{isDefault==1?"act":""}}'></view>
     </view>
   </view>
   <view class='footer' bindtap='saveAddr'>保存</view>

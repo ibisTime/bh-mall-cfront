@@ -1,4 +1,5 @@
 import { getPageProduct, getBanners } from '../../api/api.js';
+import { getToUser } from '../../utils/util.js';
 // 获取应用实例
 const app = getApp()
 
@@ -16,7 +17,15 @@ Page({
     fetching: false
   },
   onLoad: function(options) {
-    this.getProductList();
+    if (getToUser()) {
+      this.getProductList();
+    } else {
+      wx.showModal({
+        title: '提示',
+        content: '您需要通过代理的二维码进入，否则将无法下单',
+        showCancel: false
+      });
+    }
     this.getBanners();
   },
   // 查询产品列表
@@ -45,6 +54,11 @@ Page({
     wx.navigateTo({
       url: '../goodsdetail/goodsdetail?code=' + e.currentTarget.dataset.code
     });
+  },
+  goCart() {
+    wx.navigateTo({
+      url: '../cart/cart'
+    })
   },
   onReachBottom() {
     this.getProductList();

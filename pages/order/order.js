@@ -42,7 +42,6 @@ Page({
   getHeight(){
     wx.getSystemInfo({
       success: (res) => {
-        let height = res.windowHeight;
         wx.createSelectorQuery().selectAll('.top-scroll')
           .boundingClientRect((rects) => {
             rects.forEach((rect) => {
@@ -179,7 +178,7 @@ Page({
   payOrder(e) {
     showLoading('支付中...');
     let code = e.target.dataset.code;
-    payOrder(code).then((data) => {
+    payOrder([code]).then((data) => {
       wx.hideLoading();
       wxPay(data).then(() => {
         showSuc('支付成功');

@@ -1,4 +1,4 @@
-import { getAddressList, applyOrder, payOrder } from '../../api/api.js';
+import { getAddressList, applyOrder, payOrder, applyCartOrder } from '../../api/api.js';
 import { showSuc } from '../../utils/util.js';
 import { wxPay } from '../../utils/weixin.js';
 
@@ -27,10 +27,15 @@ Page({
         buyType: 0,
         productSpecsCode: app.globalData.products[0].currentSpec.code
       });
+    } else {
+      this.setData({
+        buyType: 1,
+        cartList: app.globalData.products.map(v => v.currentSpec.code)
+      });
     }
     let amount = 0;
     app.globalData.products.forEach(p => {
-      amount += p.detail.price * p.count;
+      amount += p.currentSpec.price * p.count;
     });
     this.setData({
       products: app.globalData.products,
@@ -43,7 +48,7 @@ Page({
       this.setData({
         address: {
           ...addr,
-          singer: addr.receiver
+          signer: addr.receiver
         }
       });
     }
@@ -57,7 +62,7 @@ Page({
       this.setData({
         address: {
           ...addr,
-          singer: addr.receiver
+          signer: addr.receiver
         }
       });
     }
@@ -72,7 +77,7 @@ Page({
         this.setData({
           address: {
             ...data[0],
-            singer: data[0].receiver
+            signer: data[0].receiver
           }
         });
       }
@@ -100,6 +105,8 @@ Page({
       });
       if (this.data.buyType == 0) {
         this.apply();
+      } else if (this.data.buyType == 1) {
+        this.applyCartOrder();
       }
     }
   },
@@ -113,20 +120,37 @@ Page({
       toUser: this.data.toUser
     }).then((data) => {
       app.globalData.reloadOrders = true;
-      this.payOrder(data.code);
+      this.payOrder([data.code]);
     }).catch(() => {
       wx.hideLoading();
     });
   },
-  payOrder(code) {
-    payOrder(code).then((data) => {
+  applyCartOrder() {
+    applyCartOrder({
+      ...this.data.address,
+      cartList: this.data.cartList,
+      applyNote: this.data.applyNote,
+      toUser: this.data.toUser
+    }).then((data) => {
+      app.globalData.reloadOrders = true;
+      this.payOrder(data);
+    }).catch(() => {
+      wx.hideLoading();
+    });
+  },
+  payOrder(codeList) {
+    payOrder(codeList).then((data) => {
       wx.hideLoading();
       wxPay(data).then(() => {
         showSuc('支付成功');
         wx.switchTab({
           url: '../order/order'
         });
-      }).catch(() => {});
+      }).catch(() => {
+        wx.switchTab({
+          url: '../order/order'
+        });
+      });
     }).catch(() => {
       wx.hideLoading();
       wx.showModal({

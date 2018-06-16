@@ -81,3 +81,11 @@ export function showSuc(title, duration = 1000) {
 export function getUserId() {
   return wx.getStorageSync('userId');
 }
+// 获取推荐人
+export function getToUser() {
+  return wx.getStorageSync('toUser');
+}
+// 设置推荐人
+export function setToUser(toUser) {
+  wx.setStorageSync('toUser', toUser);
+}

@@ -1,5 +1,5 @@
 import { wxLogin, getUserById } from 'api/api.js';
-import { formatImg } from 'utils/util.js';
+import { formatImg, setToUser, getToUser } from 'utils/util.js';
 
 App({
   onLaunch: function (options) {
@@ -44,13 +44,15 @@ App({
     });
   },
   getReferenceId(url) {
+    // url = '1';
     if (url) {
       url = decodeURIComponent(url);
       var match = /userId=([^&$]+)/.exec(url);
+      // match = ['', 'U201806161136139587216'];
       if (match) {
-        wx.setStorageSync('toUser', { userId: match[1] });
+        setToUser({ userId: match[1] });
         getUserById(match[1]).then((data) => {
-          wx.setStorageSync('toUser', data);
+          setToUser(data);
         }).catch(() => {});
       } else {
         this.hasToUser();
@@ -60,7 +62,7 @@ App({
     }
   },
   hasToUser() {
-    if (!wx.getStorageSync('toUser')) {
+    if (!getToUser()) {
       wx.showModal({
         title: '提示',
         content: '您需要通过代理的二维码进入，否则将无法下单',
