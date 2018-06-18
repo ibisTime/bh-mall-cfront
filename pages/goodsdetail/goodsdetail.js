@@ -30,24 +30,26 @@ Page({
       getSysConfig('telephone')
     ]).then(([data, telephone]) => {
       wx.hideLoading();
-      let advPic = data.advPic.split('||').map(p => formatImg(p));
-      let specsList = data.specsList
-        .filter(v => v.isNormalOrder === '1')
-        .filter(s => {
-          let flag = false;
-          s.priceList.forEach(p => {
-            flag = p.level == '6';
-          });
-          return flag;
-        });
+      let advPic = data.product.advPic.split('||').map(p => formatImg(p));
+      let specsList = data.specsList;
+        // .filter(v => v.isNormalOrder === '1')
+        // .filter(s => {
+        //   let flag = false;
+        //   s.priceList.forEach(p => {
+        //     flag = p.level == '6';
+        //   });
+        //   return flag;
+        // });
+      console.log(specsList);
       let current = {}, price = '-';
       if (specsList.length) {
         current = specsList[0];
-        current.priceList.forEach(p => {
-          if (p.level == '6') {
-            price = p.price;
-          }
-        });
+        // current.priceList.forEach(p => {
+        //   if (p.level == '6') {
+        //     price = p.price;
+        //   }
+        // });
+        price = current.price;
       }
       this.setData({
         advPic,
@@ -81,11 +83,12 @@ Page({
   chooseItem(e) {
     var current = this.data.specsList[e.target.dataset.idx];
     var price;
-    current.priceList.forEach(p => {
-      if (p.level == '6') {
-        price = p.price;
-      }
-    });
+    // current.priceList.forEach(p => {
+    //   if (p.level == '6') {
+    //     price = p.price;
+    //   }
+    // });
+    price = current.price;
     var amount = price * this.data.count;
     this.setData({ current, price, amount });
   },
@@ -113,8 +116,9 @@ Page({
   },
   // 添加购物车
   addCart() {
+    console.log(this.data.detail);
     showLoading();
-    addCart(this.data.detail.code, this.data.current.code, this.data.count)
+    addCart(this.data.detail.product.code, this.data.current.productSpecsCode, this.data.count)
       .then(() => {
         wx.hideLoading();
         showSuc('购物车添加成功');
@@ -132,11 +136,12 @@ Page({
   // 购买商品
   buy() {
     let price;
-    this.data.current.priceList.forEach(p => {
-      if (p.level == '6') {
-        price = p.price;
-      }
-    });
+    // this.data.current.priceList.forEach(p => {
+    //   if (p.level == '6') {
+    //     price = p.price;
+    //   }
+    // });
+    price = this.data.current.price;
     app.globalData.products = [{
       detail: this.data.detail,
       currentSpec: {

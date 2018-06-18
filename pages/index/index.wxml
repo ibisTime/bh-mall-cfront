@@ -12,14 +12,14 @@
 </swiper>
 <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
 <view>
-  <view class="indexShow" wx:for="{{list}}" wx:key="{{index}}" data-code='{{item.product.code}}' catchtap='goDetail'>
+  <view class="indexShow" wx:for="{{list}}" wx:key="{{index}}" data-code='{{item.code}}' catchtap='goDetail'>
     <image src="{{comFmt.formatImg(item.product.pic)}}"></image>
     <view class="showDetail">
       <text class="showTitle">{{item.product.name}}</text>
       <text class="showServe">{{item.product.slogan}}</text>
       <view class="showPrice">
-        <text class="price"><text class="unit">¥</text>{{comFmt.formatPrice(item.product.adPrice)}}</text>
-        <text class="showOldPrice">市场参考价：{{comFmt.formatPrice(item.product.price)}}</text>
+        <text class="price"><text class="unit">¥</text>{{comFmt.formatPrice(item.specsList[0].price)}}</text>
+        <text class="showOldPrice">市场参考价：{{comFmt.formatPrice(item.product.adPrice)}}</text>
       </view>
     </view>
   </view>

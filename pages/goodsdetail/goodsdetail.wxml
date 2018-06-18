@@ -12,8 +12,8 @@
         <text class="title">{{detail.name}}</text>
         <text class="tip">{{detail.slogan}}</text>
         <view class="price">
-            <view class="newPrice">￥<text>{{comFmt.formatPrice(detail.adPrice)}}</text></view>
-            <text class="oldPrice">市场参考价：￥{{comFmt.formatPrice(detail.price)}}</text>
+            <view class="newPrice">￥<text>{{comFmt.formatPrice(detail.specsList[0].price)}}</text></view>
+            <text class="oldPrice">市场参考价：￥{{comFmt.formatPrice(detail.product.price)}}</text>
         </view>
     </view>
     <!-- <view class="detail">
@@ -42,11 +42,11 @@
     <view class="buypart">
         <view class="title">
             <view class="title-pic">
-                <image src="{{comFmt.formatImg(detail.pic)}}"></image>
+                <image src="{{comFmt.formatImg(detail.product.pic)}}"></image>
             </view>
             <view class="title-right">
-                <view class="p">{{detail.name}}</view>
-                <text class="span">规格包含数量：{{current.number}}</text>
+                <view class="p">{{detail.product.name}}</view>
+                <text class="span">规格包含数量：{{current.quantity}}</text>
                 <view class="close" bindtap='hideMask'><icon type="cancel" size="18"></icon></view>
             </view>
         </view>
@@ -59,7 +59,7 @@
                 data-idx="{{index}}"
                 bindtap="chooseItem"
                 class="span {{item.code == current.code ? 'active' : ''}}"
-                >{{item.name}}</text>
+                >{{item.productSpecsName}}</text>
             </view>
         </view>
         <view class="total-money">

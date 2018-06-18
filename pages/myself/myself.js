@@ -29,6 +29,13 @@ Page({
       this.getUserInfo();
     });
   },
+  loginAgain() {
+    wx.removeStorageSync('userId');
+    wx.removeStorageSync('toUser');
+    app.wxLogin(() => {
+      this.getUserInfo();
+    });
+  },
   goSetting() {
     if (this.data.login) {
       wx.navigateTo({

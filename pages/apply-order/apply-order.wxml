@@ -5,7 +5,7 @@
         <view class='addr-icon'><image class='img' src='../../images/img/addr@3x.png'/></view>
         <view class='addr-content'>
           <view class='receiver'>
-            <view>收货人：{{address.singer}}</view>
+            <view>收货人：{{address.receiver}}</view>
             <view>{{address.mobile}}</view>
           </view>
           <view class='address'>收货地址：{{address.province}} {{address.city}} {{address.area}} {{address.address}}</view>
@@ -26,10 +26,10 @@
   <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
   <view class='products'>
     <view class='p-item' wx:for="{{products}}" wx:key="{{index}}">
-      <view class='l-img'><image class='img' src="{{comFmt.formatImg(item.detail.pic)}}"/></view>
+      <view class='l-img'><image class='img' src="{{comFmt.formatImg(item.detail.product.pic || item.detail.pic)}}"/></view>
       <view class='item-cont'>
-        <view class='title'><text>{{item.detail.name}}</text></view>
-        <view class='tip'><text>{{item.currentSpec.name}}</text></view>
+        <view class='title'><text>{{item.detail.product.name || item.detail.name}}</text></view>
+        <view class='tip'><text>{{item.currentSpec.productSpecsName || item.currentSpec.specsName}}</text></view>
         <view class='btm'><text class='unit'>¥</text><text class='price'>{{comFmt.formatPrice(item.currentSpec.price)}}</text><text class='count'>X{{item.count}}</text></view>
       </view>
     </view>

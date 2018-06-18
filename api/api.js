@@ -2,10 +2,14 @@ import ajax from '../utils/request.js';
 import { getUserId, getToUser } from '../utils/util.js';
 
 // 微信登录
-export function wxLogin(code) {
+export function wxLogin(code, photo, nickname) {
   return ajax({
     code: 627302,
-    json: { code }
+    json: {
+      code,
+      photo,
+      nickname
+    }
   });
 }
 // 获取用户详情
@@ -30,10 +34,10 @@ export function getDictList(parentKey) {
   });
   return getDictList[parentKey];
 }
-// 分页查询产品
+// 分页查询云仓产品
 export function getPageProduct(start = 1, limit = 100) {
   return ajax({
-    code: 627811,
+    code: 627816,
     json: {
       start,
       limit,
@@ -41,10 +45,10 @@ export function getPageProduct(start = 1, limit = 100) {
     }
   });
 }
-// 详情查询产品
+// 详情查询云仓产品
 export function getProduct(code) {
   return ajax({
-    code: 627557,
+    code: 627813,
     json: { code }
   });
 }
@@ -115,6 +119,7 @@ export function getAddress(code) {
 }
 // 提交订单（无购物车)
 export function applyOrder({ province, city, area, address, signer, mobile, productSpecsCode, applyUser, applyNote, toUser, quantity }) {
+  console.log(toUser);
   return ajax({
     code: 627641,
     json: {

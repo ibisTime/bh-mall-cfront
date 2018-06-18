@@ -17,6 +17,7 @@ Page({
     fetching: false
   },
   onLoad: function(options) {
+    app.wxLogin();
     if (getToUser()) {
       this.getProductList();
     } else {

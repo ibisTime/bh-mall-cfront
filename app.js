@@ -3,6 +3,7 @@ import { formatImg, setToUser, getToUser } from 'utils/util.js';
 
 App({
   onLaunch: function (options) {
+    this.wxLogin();
     this.getReferenceId(options.query.q);
     if (!wx.getStorageSync('userId')) {
       this.wxLogin();
@@ -15,25 +16,29 @@ App({
         wx.getUserInfo({
           withCredentials: true,
           lang: 'zh_CN',
-          success: (res) => {
-            console.log(res);
+          success: (info) => {
+            // 发送 res.code 到后台换取 openId, sessionKey, unionId
+            // console.log(res.code);
+            // console.log(info);
+            // console.log(info.userInfo.avatarUrl);
+            // console.log(info.userInfo.nickName);
+            wxLogin(res.code, info.userInfo.avatarUrl, info.userInfo.nickName).then((data) => {
+              wx.setStorageSync('userId', data.userId);
+              wx.setStorageSync('token', data.token);
+              suc && suc();
+            }).catch(() => {
+              wx.showToast({
+                title: '登录失败',
+                icon: 'none'
+              });
+              err && err();
+            });
           },
           fail: (err) => {
             console.log(err);
           }
         })
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        wxLogin(res.code).then((data) => {
-          wx.setStorageSync('userId', data.userId);
-          wx.setStorageSync('token', data.token);
-          suc && suc();
-        }).catch(() => {
-          wx.showToast({
-            title: '登录失败',
-            icon: 'none'
-          });
-          err && err();
-        });
+        console.log(res.code);
       },
       error: () => {
         wx.showToast({
@@ -48,7 +53,7 @@ App({
     if (url) {
       url = decodeURIComponent(url);
       var match = /userId=([^&$]+)/.exec(url);
-      // match = ['', 'U201806161136139587216'];
+      // match = ['', 'U201806181551130696982'];
       if (match) {
         setToUser({ userId: match[1] });
         getUserById(match[1]).then((data) => {

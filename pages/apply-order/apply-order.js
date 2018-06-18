@@ -21,11 +21,12 @@ Page({
     this.setData({
       toUser: toUser ? toUser.userId : ''
     });
+    // console.log(this.data.toUser);
     // 商品详情直接下单
     if (options.type == 0) {
       this.setData({
         buyType: 0,
-        productSpecsCode: app.globalData.products[0].currentSpec.code
+        productSpecsCode: app.globalData.products[0].currentSpec.productSpecsCode
       });
     } else {
       this.setData({
@@ -37,6 +38,7 @@ Page({
     app.globalData.products.forEach(p => {
       amount += p.currentSpec.price * p.count;
     });
+    console.log(app.globalData.products);
     this.setData({
       products: app.globalData.products,
       totalAmount: amount
@@ -45,10 +47,11 @@ Page({
   onShow: function () {
     if (app.globalData.choseAddr) {
       let addr = app.globalData.choseAddr;
+      // console.log(addr);
       this.setData({
         address: {
-          ...addr,
-          signer: addr.receiver
+          ...addr
+          // signer: addr.receiver
         }
       });
     }
@@ -59,10 +62,11 @@ Page({
       this.getAddress();
     } else {
       let addr = app.globalData.choseAddr;
+      // console.log(addr);
       this.setData({
         address: {
-          ...addr,
-          signer: addr.receiver
+          ...addr
+          // signer: addr.receiver
         }
       });
     }
@@ -74,10 +78,11 @@ Page({
     });
     getAddressList(1).then((data) => {
       if (data.length) {
+        // console.log(data[0]);
         this.setData({
           address: {
-            ...data[0],
-            signer: data[0].receiver
+            ...data[0]
+            // signer: data[0].receiver
           }
         });
       }
@@ -126,11 +131,13 @@ Page({
     });
   },
   applyCartOrder() {
+    // console.log(this.data.address.receiver);
     applyCartOrder({
       ...this.data.address,
       cartList: this.data.cartList,
       applyNote: this.data.applyNote,
-      toUser: this.data.toUser
+      toUser: this.data.toUser,
+      signer: this.data.address.receiver
     }).then((data) => {
       app.globalData.reloadOrders = true;
       this.payOrder(data);
@@ -141,6 +148,7 @@ Page({
   payOrder(codeList) {
     payOrder(codeList).then((data) => {
       wx.hideLoading();
+      console.log(data);
       wxPay(data).then(() => {
         showSuc('支付成功');
         wx.switchTab({
