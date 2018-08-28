@@ -14,10 +14,29 @@ Page({
     start: 1,
     limit: 20,
     hasMore: true,
-    fetching: false
+    fetching: false,
+    isLogin: true
   },
-  onLoad: function(options) {
-    app.wxLogin();
+  onLoad(options) {
+    if (!wx.getStorageSync('userId')) {
+      wx.getSetting({
+        success: (res) => {
+          if (res.authSetting['scope.userInfo']) {
+            // 已经授权，可以直接调用 getUserInfo 获取头像昵称
+            wx.getUserInfo({
+              success: (res) => {
+                app.wxLogin(res, () => this.setData({ isLogin: true }));
+              }
+            });
+          } else {
+            this.setData({ isLogin: false });
+          }
+        },
+        fail: () => {
+          this.setData({ isLogin: false });
+        }
+      });
+    }
     if (getToUser()) {
       this.getProductList();
     } else {
@@ -63,5 +82,13 @@ Page({
   },
   onReachBottom() {
     this.getProductList();
+  },
+  onConfirm() {
+    this.setData({
+      isLogin: true
+    })
+  },
+  bindGetUserInfo: function (e) {
+    app.wxLogin(e.detail, () => this.setData({ isLogin: true }));
   }
 })

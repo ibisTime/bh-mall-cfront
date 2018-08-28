@@ -18,7 +18,7 @@ export function formatImg(imgs, suffix) {
       suffix = img.substr(index);
       img = img.substr(0, index);
     }
-    img = 'http://otoieuivb.bkt.clouddn.com/' + encodeURIComponent(img) + suffix;
+    img = 'http://ounm8iw2d.bkt.clouddn.com/' + encodeURIComponent(img) + suffix;
   }
   return img;
 }

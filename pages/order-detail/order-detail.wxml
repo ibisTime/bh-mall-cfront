@@ -16,7 +16,7 @@
         <view class='addr-icon'><image class='img' src='../../images/img/addr@3x.png'/></view>
         <view class='addr-content'>
           <view class='receiver'>
-            <view>收货人：{{order.singer}}</view>
+            <view>收货人：{{order.signer}}</view>
             <view>{{order.mobile}}</view>
           </view>
           <view class='address'>收货地址：{{order.province}} {{order.city}} {{order.area}} {{order.address}}</view>

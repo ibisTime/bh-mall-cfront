@@ -20,9 +20,7 @@ Page({
     getUserInfo().then((userInfo) => {
       this.setData({ userInfo, login: true });
       wx.hideLoading();
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   },
   login() {
     app.wxLogin(() => {

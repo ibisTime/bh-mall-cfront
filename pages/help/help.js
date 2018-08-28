@@ -12,8 +12,6 @@ Page({
       this.setData({
         info: data.cvalue
       });
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   }
 })

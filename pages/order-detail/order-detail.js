@@ -20,9 +20,7 @@ Page({
         applyDatetime: formatDate(order.applyDatetime, 'yyyy-MM-dd hh:mm:ss')
       };
       this.setData({ order });
-    }).catch((err) => {
-      wx.hideLoading();
-    });
+    }).catch((err) => {});
   },
   // 支付订单
   payOrder() {
@@ -38,9 +36,7 @@ Page({
           });
         }, 1000);
       }).catch(() => {});
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   },
   // 点击取消订单
   cancel() {
@@ -67,9 +63,7 @@ Page({
           status: '5'
         }
       });
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   },
   // 点击确认收货
   receive(e) {
@@ -96,9 +90,7 @@ Page({
           status: '4'
         }
       });
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   },
   goDetail(e) {
     wx.navigateTo({

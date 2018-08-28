@@ -92,9 +92,7 @@ Page({
         this.setData({ totalAmount: amount });
       }
       this.setData({ list });
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   },
   // 选择商品
   choseItem(e) {
@@ -145,7 +143,7 @@ Page({
     wx.showModal({
       title: '提示',
       content: '确认删除吗?',
-      success: function (res) {
+      success: (res) => {
         if (res.confirm) {
           let code = e.currentTarget.dataset.code;
           let index = this.data.list.findIndex(d => d.code === code);
@@ -161,9 +159,7 @@ Page({
               list,
               totalAmount: amount
             });
-          }).catch(() => {
-            wx.hideLoading();
-          });
+          }).catch(() => {});
         }
       }
     });

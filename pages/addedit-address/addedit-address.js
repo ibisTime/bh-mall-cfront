@@ -44,7 +44,6 @@ Page({
         region: [data.province, data.city, data.area]
       });
     }).catch(() => {
-      wx.hideLoading();
     });
   },
   saveAddr() {
@@ -85,9 +84,7 @@ Page({
         wx.navigateBack({
           delta: 1
         });
-      }).catch(() => {
-        wx.hideLoading();
-      });
+      }).catch(() => {});
   },
   // 修改地址
   editAddress: function () {
@@ -112,7 +109,6 @@ Page({
         delta: 1
       });
     }).catch(() => {
-      wx.hideLoading();
     });
   }
 })

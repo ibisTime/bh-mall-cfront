@@ -40,7 +40,6 @@ Page({
         //   });
         //   return flag;
         // });
-      console.log(specsList);
       let current = {}, price = '-';
       if (specsList.length) {
         current = specsList[0];
@@ -61,9 +60,7 @@ Page({
         indicatorDots: advPic.length > 1,
         telephone: telephone.cvalue
       });
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   },
   // 拨打客服
   callPhone() {
@@ -116,16 +113,13 @@ Page({
   },
   // 添加购物车
   addCart() {
-    console.log(this.data.detail);
     showLoading();
-    addCart(this.data.detail.product.code, this.data.current.productSpecsCode, this.data.count)
+    addCart(this.data.current.specsCode, this.data.count)
       .then(() => {
         wx.hideLoading();
         showSuc('购物车添加成功');
       })
-      .catch(() => {
-        wx.hideLoading();
-      });
+      .catch(() => {});
   },
   // 进入购物车
   goCart() {

@@ -3,6 +3,16 @@
   <image class="search" src="../../images/img/sousuo@2x.png"></image>
   <input class="proName" type="text" placeholder="请输入您感兴趣的商品"></input>
 </view> -->
+<!-- <view wx:if="{{!isLogin}}">
+  <button  open-type="getUserInfo" bindgetuserinfo="getUserInfo">授权</button>
+</view> -->
+<view class="modal-mask" bindtap="hideModal" catchtouchmove="preventTouchMove" wx:if="{{!isLogin}}"></view>
+<view class="modal-dialog" wx:if="{{!isLogin}}">
+  <view class="modal-title">授权登录</view>
+  <view class="modal-footer">
+    <button class="btn-confirm" bindtap="onConfirm" data-status="confirm" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">确定</button>
+  </view>
+</view>
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{banners}}" wx:key="{{item.code}}">
     <swiper-item>

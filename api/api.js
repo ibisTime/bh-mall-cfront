@@ -4,7 +4,7 @@ import { getUserId, getToUser } from '../utils/util.js';
 // 微信登录
 export function wxLogin(code, photo, nickname) {
   return ajax({
-    code: 627302,
+    code: 627340,
     json: {
       code,
       photo,
@@ -19,7 +19,7 @@ export function getUserInfo() {
 // 根据userId获取用户详情
 export function getUserById(userId) {
   return ajax({
-    code: 627357,
+    code: 627347,
     json: { userId }
   });
 }
@@ -48,7 +48,7 @@ export function getPageProduct(start = 1, limit = 100) {
 // 详情查询云仓产品
 export function getProduct(code) {
   return ajax({
-    code: 627813,
+    code: 627817,
     json: { code }
   });
 }
@@ -119,9 +119,8 @@ export function getAddress(code) {
 }
 // 提交订单（无购物车)
 export function applyOrder({ province, city, area, address, signer, mobile, productSpecsCode, applyUser, applyNote, toUser, quantity }) {
-  console.log(toUser);
   return ajax({
-    code: 627641,
+    code: 627652,
     json: {
       province,
       city,
@@ -141,7 +140,7 @@ export function applyOrder({ province, city, area, address, signer, mobile, prod
 // 购物车提交订单
 export function applyCartOrder({ province, city, area, address, signer, mobile, cartList, applyUser, applyNote, toUser }) {
   return ajax({
-    code: 627640,
+    code: 627651,
     json: {
       province,
       city,
@@ -165,7 +164,8 @@ export function getPageOrder({ start = 1, limit = 100, status = '' }) {
       start,
       limit,
       status,
-      applyUser: getUserId()
+      applyUser: getUserId(),
+      kind: '4'
     }
   });
 }
@@ -219,14 +219,14 @@ export function getSysConfig(ckey) {
   });
 }
 // 添加购物车
-export function addCart(productCode, productSpecsCode, quantity) {
+export function addCart(productSpecsCode, quantity) {
   return ajax({
     code: 627620,
     json: {
-      productCode,
       productSpecsCode,
       quantity,
-      userId: getUserId()
+      userId: getUserId(),
+      level: '6'
     }
   });
 }

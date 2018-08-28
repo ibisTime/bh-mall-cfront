@@ -59,7 +59,7 @@
                 data-idx="{{index}}"
                 bindtap="chooseItem"
                 class="span {{item.code == current.code ? 'active' : ''}}"
-                >{{item.productSpecsName}}</text>
+                >{{item.productName}}</text>
             </view>
         </view>
         <view class="total-money">

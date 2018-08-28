@@ -41,7 +41,6 @@ Page({
       this.setData({ addrList, choseAddr });
       wx.hideLoading();
     }).catch(() => {
-      wx.hideLoading();
     });
   },
   // 选择地址
@@ -80,17 +79,13 @@ Page({
         app.globalData.choseAddr = null;
       }
       this.getAddressList();
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   },
   setDefault(e) {
     showLoading('删除中...');
     setDefaultAddr(e.target.dataset.code).then(() => {
       wx.hideLoading();
       this.getAddressList();
-    }).catch(() => {
-      wx.hideLoading();
-    });
+    }).catch(() => {});
   }
 })
