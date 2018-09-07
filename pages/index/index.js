@@ -37,6 +37,7 @@ Page({
         }
       });
     }
+    // console.log('index' + getToUser());
     if (getToUser()) {
       this.getProductList();
     } else {
@@ -50,15 +51,30 @@ Page({
   },
   // 查询产品列表
   getProductList() {
+    // console.log('getProductList');
     if (this.data.hasMore && !this.data.fetching) {
       getPageProduct(this.data.start, this.data.limit)
         .then((res) => {
+          console.log('suc', res);
+          // debugger;
+          // this.list = res.list.map(item => {
+          //   let code = item.code;
+          //   item.specsList.filter(l => {
+          //     console.log(l.code, item.code);
+          //     return l.code = code;
+          //   })
+          // });
+          // console.log(this.list);
+          // res.list.filter(l => {
+          //   return i.
+          // })
           this.setData({
             list: res.list,
             start: ++this.data.start,
             hasMore: res.pageNO < res.totalPage
           });
         }).catch((err) => {
+          console.log('no', res);
           this.setData({
             hasMore: false
           });

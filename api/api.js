@@ -202,8 +202,9 @@ export function getBanners() {
   return ajax({
     code: 627036,
     json: {
+      status: 0,
       type: 2,
-      location: 'index_banner'
+      location: '0'
     }
   });
 }
@@ -257,6 +258,27 @@ export function deleteCartProduct(code) {
     code: 627622,
     json: {
       codeList: [code]
+    }
+  });
+}
+
+// 详情查代理
+export function getAgent(userId) {
+  return ajax({
+    code: 627327,
+    json: {
+      userId: userId
+    }
+  });
+}
+
+// 根据等级查产品
+export function queryProductByLevel(code) {
+  return ajax({
+    code: 627558,
+    json: {
+      code: code,
+      level: '6'
     }
   });
 }

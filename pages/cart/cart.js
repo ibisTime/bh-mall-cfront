@@ -151,10 +151,16 @@ Page({
           showLoading();
           deleteCartProduct(code).then(() => {
             wx.hideLoading();
-            let amount = this.data.totalAmount;
-            amount -= item.price * item.quantity;
+            // let amount = this.data.totalAmount;
+            // amount -= item.price * item.quantity;
             let list = this.data.list;
             list.splice(index, 1);
+            let amount = 0;
+            list.forEach(d => {
+              if(d.checked) {
+                amount += d.price * d.quantity;
+              }
+            });
             this.setData({
               list,
               totalAmount: amount

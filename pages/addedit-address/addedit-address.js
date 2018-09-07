@@ -1,4 +1,5 @@
 import { getAddress, addAddress, editAddress } from '../../api/api.js';
+import { showLoading, showSuc, showWarn } from '../../utils/util.js';
 
 // 获取应用实例
 const app = getApp();
@@ -67,7 +68,10 @@ Page({
       title: '新增中...',
     });
     let { receiver, mobile, province, city, area, address, isDefault } = this.data;
-
+    if(!receiver || !mobile || !province || !city || !area || !address) {
+      showWarn('信息未填写完全');
+      return
+    }
     addAddress({ receiver, mobile, province, city, area, address, isDefault })
       .then((data) => {
         app.globalData.choseAddr = {

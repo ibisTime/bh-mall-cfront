@@ -32,13 +32,13 @@
         <view class='img-cont'><image class='img' src='{{comFmt.formatImg(item.pic)}}'/></view>
         <view class='info'>
           <view class='title'>
-            <view class='left'>{{item.productName}}</view>
+            <view class='left'>{{item.productName}}</view>    
             <view class='unit-price'>
               <view>¥{{comFmt.formatPrice(item.price)}}</view>
               <view>X{{item.quantity}}</view>
             </view>
           </view>
-          <view class='spec'>{{item.productSpecsName}}</view>
+          <view class='spec'>规格：{{item.specsName}}</view>
           <view class='bottom'>
             <view class='date'>{{item.applyDatetime}}</view>
             <view class='p-info'>总价：<text class='price'>¥{{comFmt.formatPrice(item.amount)}}</text></view>

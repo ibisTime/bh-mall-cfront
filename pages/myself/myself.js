@@ -1,5 +1,5 @@
-import { getUserInfo } from '../../api/api.js';
-import { showLoading, getUserId, showWarn } from '../../utils/util.js';
+import { getUserInfo, getAgent } from '../../api/api.js';
+import { showLoading, getUserId, showWarn, showSuc } from '../../utils/util.js';
 
 const app = getApp();
 
@@ -27,12 +27,10 @@ Page({
       this.getUserInfo();
     });
   },
-  loginAgain() {
+  logOut() {
     wx.removeStorageSync('userId');
     wx.removeStorageSync('toUser');
-    app.wxLogin(() => {
-      this.getUserInfo();
-    });
+    showSuc('退出登陆成功');
   },
   goSetting() {
     if (this.data.login) {
@@ -55,13 +53,22 @@ Page({
   callPhone() {
     if (this.data.login) {
       let toUser = wx.getStorageSync('toUser');
-      if (toUser.mobile) {
-        wx.makePhoneCall({
-          phoneNumber: toUser.mobile
-        });
-      } else {
-        showWarn('您的代理还没有手机号');
-      }
+      getAgent(toUser.userId).then((res) => {
+        if(res.mobile) {
+          wx.makePhoneCall({
+            phoneNumber: res.mobile
+          });
+        } else {
+          showWarn('您的代理还没有手机号');
+        }
+      })
+      // if (toUser.mobile) {
+      //   wx.makePhoneCall({
+      //     phoneNumber: toUser.mobile
+      //   });
+      // } else {
+        
+      // }
     } else {
       showWarn('您还未登录');
     }

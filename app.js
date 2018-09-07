@@ -30,12 +30,11 @@ App({
     });
   },
   getReferenceId(url) {
-    url = 'http://front.bhxt.hichengdai.com/xcx/?userId=U201808261104285013162';
     // url = '1';
     if (url) {
       url = decodeURIComponent(url);
       var match = /userId=([^&$]+)/.exec(url);
-      // match = ['', 'U201808221252134258967'];
+      // match = ['', 'U201809061405146404245'];
       if (match) {
         setToUser({ userId: match[1] });
       } else {

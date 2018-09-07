@@ -32,9 +32,9 @@
     <text class="text">联系代理</text>
     <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
   </view>
-    <view class="item" bindtap="loginAgain">
+  <view class="item" bindtap="logOut">
     <image class="ico" src="../../images/img/lianxidaili@2x.png"></image>
-    <text class="text">重新登录</text>
+    <text class="text">退出登录</text>
     <image class="more" src="../../images/img/tiaozhuan@2x.png"></image>
   </view>
   <!-- <view class="item" bindtap="goVersion">

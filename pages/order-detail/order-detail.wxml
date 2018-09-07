@@ -39,7 +39,7 @@
       <view class='l-img'><image class='img' src="{{comFmt.formatImg(order.pic)}}"/></view>
       <view class='item-cont'>
         <view class='title'><text>{{order.productName}}</text></view>
-        <view class='tip'><text>{{order.productSpecsName}}</text></view>
+        <view class='tip'><text>{{order.specsName}}</text></view>
         <view class='btm'><text class='unit'>¥</text><text class='price'>{{comFmt.formatPrice(order.price)}}</text><text class='count'>X{{order.quantity}}</text></view>
       </view>
     </view>

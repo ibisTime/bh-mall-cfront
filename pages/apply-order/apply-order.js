@@ -1,5 +1,5 @@
 import { getAddressList, applyOrder, payOrder, applyCartOrder } from '../../api/api.js';
-import { showSuc } from '../../utils/util.js';
+import { showSuc, showWarn } from '../../utils/util.js';
 import { wxPay } from '../../utils/weixin.js';
 
 const app = getApp();
@@ -109,6 +109,13 @@ Page({
   },
   // 商品详情直接下单
   apply() {
+    if(!this.data.address) {
+      showWarn('您暂未选择地址');
+      return;
+    }
+    if (!this.data.address.signer) {
+      this.data.address.signer = this.data.address.receiver;
+    }
     applyOrder({
       ...this.data.address,
       quantity: this.data.products[0].count,
@@ -121,6 +128,9 @@ Page({
     }).catch(() => {});
   },
   applyCartOrder() {
+    if (!this.data.address.signer) {
+      this.data.address.signer = this.data.address.receiver;
+    }
     applyCartOrder({
       ...this.data.address,
       cartList: this.data.cartList,

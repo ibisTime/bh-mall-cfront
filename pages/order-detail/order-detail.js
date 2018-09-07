@@ -94,7 +94,7 @@ Page({
   },
   goDetail(e) {
     wx.navigateTo({
-      url: '../goodsdetail/goodsdetail?code=' + e.currentTarget.dataset.code
+      url: '../goodsdetail/goodsdetail?order=1&code=' + e.currentTarget.dataset.code
     });
   }
 })

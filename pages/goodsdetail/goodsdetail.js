@@ -1,6 +1,6 @@
 const app = getApp()
 import { formatImg, showLoading, showSuc } from "../../utils/util.js";
-import { getProduct, getSysConfig, addCart } from '../../api/api';
+import { getProduct, getSysConfig, addCart, queryProductByLevel } from '../../api/api';
 
 Page({
   data: {
@@ -20,7 +20,11 @@ Page({
     info: '<p><img src="http://otoieuivb.bkt.clouddn.com/IMG_2130_1524907296779.JPG" style="max-width:100%"></p><p>关于我们</p><p><br></p>'
   },
   onLoad:function(options){
-    this.getDetail(options.code);
+    if(options.order) {
+      this.queryProductByLevel(options.code);
+    } else {
+      this.getDetail(options.code);
+    }
   },
   // 获取商品详情
   getDetail(code) {
@@ -61,6 +65,49 @@ Page({
         telephone: telephone.cvalue
       });
     }).catch(() => {});
+  },
+  // 获取商品详情-订单进入
+  queryProductByLevel(code) {
+    showLoading();
+    Promise.all([
+      queryProductByLevel(code),
+      getSysConfig('telephone')
+    ]).then(([data, telephone]) => {
+      wx.hideLoading();
+      let advPic = data.advPic.split('||').map(p => formatImg(p));
+      let specsList = data.specsList;
+      data.product = {
+        price: data.price,
+        pic: data.pic,
+        name: data.name
+      }
+      let current = {}, price = '-';
+      if (specsList.length) {
+        specsList.forEach(s => {
+          s.price = s.price.price;
+          s.specsName = s.name;
+          s.specsCode = s.code;
+        });
+        // console.log(data);
+        current = specsList[0];
+        // current.priceList.forEach(p => {
+        //   if (p.level == '6') {
+        //     price = p.price;
+        //   }
+        // });
+        price = current.price;
+      }
+      this.setData({
+        advPic,
+        current,
+        specsList,
+        price,
+        amount: price,
+        detail: data,
+        indicatorDots: advPic.length > 1,
+        telephone: telephone.cvalue
+      });
+    }).catch(() => { });
   },
   // 拨打客服
   callPhone() {
