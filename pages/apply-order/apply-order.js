@@ -34,8 +34,15 @@ Page({
       });
     }
     let amount = 0;
+    // app.globalData.products.forEach(p => {
+    //   amount += p.currentSpec.price * p.count;
+    // });
     app.globalData.products.forEach(p => {
-      amount += p.currentSpec.price * p.count;
+      if(p.detail.agentPrice) {
+        amount += p.detail.agentPrice * p.count;        
+      } else {
+        amount += p.detail.price * p.count;        
+      }
     });
     this.setData({
       products: app.globalData.products,
@@ -119,7 +126,8 @@ Page({
     applyOrder({
       ...this.data.address,
       quantity: this.data.products[0].count,
-      productSpecsCode: this.data.productSpecsCode,
+      // productSpecsCode: this.data.productSpecsCode,
+      productSpecsCode: this.data.products[0].detail.code,
       applyNote: this.data.applyNote,
       toUser: this.data.toUser
     }).then((data) => {

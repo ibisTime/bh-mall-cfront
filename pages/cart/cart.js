@@ -174,11 +174,14 @@ Page({
   buy() {
     let price;
     let list = [];
+    console.log(this.data.list);
     this.data.list.forEach(p => {
       if (p.checked) {
+        p.product.price = p.price;
         list.push({
           detail: p.product,
-          currentSpec: p,
+          // currentSpec: p,
+          currentSpec: p.specsCode,
           count: p.quantity
         });
       }

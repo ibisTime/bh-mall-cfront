@@ -13,7 +13,7 @@ Page({
     hasMore: true,
     scrollHeight: 100,
     allList: {},
-    topStatus:['', 0, '1,2', 3, 4, 5, 6],
+    topStatus:['', 0, 2, 3, 4, 5, 6],
     topIdx: 0,
     viewId: ['all', 'dzf', 'dfh', 'dsh', 'ysf', 'sqqx', 'yqx']
   },
@@ -58,6 +58,7 @@ Page({
     this.judgeCate(e.currentTarget.dataset.index);
   },
   judgeCate(topIdx) {
+    // debugger;
     if (!this.data.allList[topIdx]) {
       let arr = [];
       arr.hasMore = true;
@@ -73,7 +74,8 @@ Page({
       });
       this.getOrders({
         topIdx,
-        start: 1
+        start: 1,
+        refresh: true
       });
     } else {
       this.setData({

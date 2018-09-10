@@ -41,7 +41,7 @@ export function getPageProduct(start = 1, limit = 100) {
     json: {
       start,
       limit,
-      userId: getToUser().userId
+      userId: getToUser().userId || ''
     }
   });
 }

@@ -17,6 +17,10 @@ Page({
     fetching: false,
     isLogin: true
   },
+  onPullDownRefresh() {
+    wx.stopPullDownRefresh();
+    this.getProductList();
+  },
   onLoad(options) {
     if (!wx.getStorageSync('userId')) {
       wx.getSetting({
@@ -38,15 +42,15 @@ Page({
       });
     }
     // console.log('index' + getToUser());
-    if (getToUser()) {
+    // if (getToUser()) {
       this.getProductList();
-    } else {
-      wx.showModal({
-        title: '提示',
-        content: '您需要通过代理的二维码进入，否则将无法下单',
-        showCancel: false
-      });
-    }
+    // } else {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '您需要通过代理的二维码进入，否则将无法下单',
+    //     showCancel: false
+    //   });
+    // }
     this.getBanners();
   },
   // 查询产品列表
@@ -55,21 +59,8 @@ Page({
     if (this.data.hasMore && !this.data.fetching) {
       getPageProduct(this.data.start, this.data.limit)
         .then((res) => {
-          console.log('suc', res);
-          // debugger;
-          // this.list = res.list.map(item => {
-          //   let code = item.code;
-          //   item.specsList.filter(l => {
-          //     console.log(l.code, item.code);
-          //     return l.code = code;
-          //   })
-          // });
-          // console.log(this.list);
-          // res.list.filter(l => {
-          //   return i.
-          // })
           this.setData({
-            list: res.list,
+            list: this.data.list.concat(res.list),
             start: ++this.data.start,
             hasMore: res.pageNO < res.totalPage
           });

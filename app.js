@@ -34,7 +34,7 @@ App({
     if (url) {
       url = decodeURIComponent(url);
       var match = /userId=([^&$]+)/.exec(url);
-      // match = ['', 'U201809061405146404245'];
+      // match = ['', 'U201809101013146747390'];
       if (match) {
         setToUser({ userId: match[1] });
       } else {
@@ -45,14 +45,14 @@ App({
     }
   },
   hasToUser() {
-    if (!getToUser()) {
-      wx.showModal({
-        title: '提示',
-        content: '您需要通过代理的二维码进入，否则将无法下单',
-        showCancel: false
-      });
-      return false;
-    }
+    // if (!getToUser()) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '您需要通过代理的二维码进入，否则将无法下单',
+    //     showCancel: false
+    //   });
+    //   return false;
+    // }
     return true;
   },
   globalData: {

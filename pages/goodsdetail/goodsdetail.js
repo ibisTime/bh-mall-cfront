@@ -20,11 +20,11 @@ Page({
     info: '<p><img src="http://otoieuivb.bkt.clouddn.com/IMG_2130_1524907296779.JPG" style="max-width:100%"></p><p>关于我们</p><p><br></p>'
   },
   onLoad:function(options){
-    if(options.order) {
-      this.queryProductByLevel(options.code);
-    } else {
+    // if(options.order) {
+    //   this.queryProductByLevel(options.code);
+    // } else {
       this.getDetail(options.code);
-    }
+    // }
   },
   // 获取商品详情
   getDetail(code) {
@@ -35,7 +35,7 @@ Page({
     ]).then(([data, telephone]) => {
       wx.hideLoading();
       let advPic = data.product.advPic.split('||').map(p => formatImg(p));
-      let specsList = data.specsList;
+      // let specsList = data.specsList;
         // .filter(v => v.isNormalOrder === '1')
         // .filter(s => {
         //   let flag = false;
@@ -45,19 +45,20 @@ Page({
         //   return flag;
         // });
       let current = {}, price = '-';
-      if (specsList.length) {
-        current = specsList[0];
+      // if (specsList.length) {
+        current = data;
+        // console.log(current);
         // current.priceList.forEach(p => {
         //   if (p.level == '6') {
         //     price = p.price;
         //   }
         // });
-        price = current.price;
-      }
+      price = current.agentPrice;
+      // }
       this.setData({
         advPic,
         current,
-        specsList,
+        // specsList,
         price,
         amount: price,
         detail: data,
@@ -73,11 +74,18 @@ Page({
       queryProductByLevel(code),
       getSysConfig('telephone')
     ]).then(([data, telephone]) => {
+      console.log(data);
       wx.hideLoading();
+      // debugger;
       let advPic = data.advPic.split('||').map(p => formatImg(p));
       let specsList = data.specsList;
+      // data.product = {
+      //   price: data.price,
+      //   pic: data.pic,
+      //   name: data.name
+      // }
       data.product = {
-        price: data.price,
+        price: data.specsList[0].price.price,
         pic: data.pic,
         name: data.name
       }
@@ -161,12 +169,20 @@ Page({
   // 添加购物车
   addCart() {
     showLoading();
-    addCart(this.data.current.specsCode, this.data.count)
+    
+    // addCart(this.data.current.specsCode, this.data.count)
+    //   .then(() => {
+    //     wx.hideLoading();
+    //     showSuc('购物车添加成功');
+    //   })
+    //   .catch(() => {});
+    // console.log(this.data);
+    addCart(this.data.detail.code, this.data.count)
       .then(() => {
         wx.hideLoading();
         showSuc('购物车添加成功');
       })
-      .catch(() => {});
+      .catch(() => { });
   },
   // 进入购物车
   goCart() {
@@ -182,6 +198,7 @@ Page({
     //     price = p.price;
     //   }
     // });
+    console.log(this.data.detail);
     price = this.data.current.price;
     app.globalData.products = [{
       detail: this.data.detail,

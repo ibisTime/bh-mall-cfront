@@ -29,8 +29,10 @@
       <view class='l-img'><image class='img' src="{{comFmt.formatImg(item.detail.product.pic || item.detail.pic)}}"/></view>
       <view class='item-cont'>
         <view class='title'><text>{{item.detail.product.name || item.detail.name}}</text></view>
-        <view class='tip'><text>{{item.currentSpec.productSpecsName || item.currentSpec.specsName}}</text></view>
-        <view class='btm'><text class='unit'>¥</text><text class='price'>{{comFmt.formatPrice(item.currentSpec.price)}}</text><text class='count'>X{{item.count}}</text></view>
+        <!-- <view class='tip'><text>{{item.currentSpec.productSpecsName || item.currentSpec.specsName}}</text></view> -->
+        <view class='tip'><text>{{item.detail.name}}</text></view>
+        <!-- <view class='btm'><text class='unit'>¥</text><text class='price'>{{comFmt.formatPrice(item.currentSpec.price)}}</text><text class='count'>X{{item.count}}</text></view> -->
+        <view class='btm'><text class='unit'>¥</text><text class='price'>{{comFmt.formatPrice(item.detail.agentPrice || item.detail.price)}}</text><text class='count'>X{{item.count}}</text></view>
       </view>
     </view>
   </view>

@@ -9,7 +9,8 @@ export default function ajax(options){
   };
   return new Promise((resolve, reject) => {
     wx.request({
-      url: 'https://xcx.bhxt.hichengdai.com/api',
+      // url: 'https://xcx.bhxt.hichengdai.com/api',
+      url: 'https://mj.cfront.zjqiyu.com/api',
       data: params,
       header: {
         'content-type': 'application/x-www-form-urlencoded'

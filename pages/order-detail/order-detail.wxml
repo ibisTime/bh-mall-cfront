@@ -35,7 +35,7 @@
   </view>
   <wxs module="comFmt" src="../../filter/comFmt.wxs"></wxs>
   <view class='products'>
-    <view class='p-item' bindtap='goDetail' data-code="{{order.productCode}}">
+    <view class='p-item' bindtap='goDetail' data-code="{{order.specsCode}}">
       <view class='l-img'><image class='img' src="{{comFmt.formatImg(order.pic)}}"/></view>
       <view class='item-cont'>
         <view class='title'><text>{{order.productName}}</text></view>
